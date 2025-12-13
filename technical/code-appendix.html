@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Appendix · All Working Code</title>
+    <link rel="stylesheet" href="../assets/css/terminal.css">
+    <style>
+        .code-section {
+            margin: 2rem 0;
+            border-top: 1px solid #00ff00;
+            padding-top: 1.5rem;
+        }
+        .code-section h3 {
+            color: #00ff00;
+            margin-bottom: 1rem;
+        }
+        pre {
+            background: rgba(0, 0, 0, 0.7);
+            border: 1px solid #00ff00;
+            padding: 1.5rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+        code {
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="prompt">root@recursion:~/technical# cat code-appendix.md</div>
+
+        <article>
+            <header>
+                <h1>CODE APPENDIX</h1>
+                <p class="subtitle">All The Working Code From Both Stories</p>
+                <p class="metadata">
+                    Every snippet is real. Every command works. Test them yourself.
+                </p>
+            </header>
+
+            <section class="prose">
+                <div class="code-section">
+                    <h3>## SSH CONNECTION ATTEMPTS</h3>
+                    <p>From "Aliens Testing Water" - Phase 1</p>
+                    <pre><code>#!/bin/bash
+# Attempting to connect to an emotional server
+
+ssh unit-01@human.emotion.server
+
+# Common errors you'll encounter:
+# - Connection timed out (they're not ready)
+# - Permission denied (no trust established)
+# - No route to host (they've blocked you out)
+
+# The solution is NOT better SSH flags
+# The solution is waiting for an invitation</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h3>## DEPENDENCY HELL</h3>
+                    <p>From "Aliens Testing Water" - Phase 2</p>
+                    <pre><code># Try installing human emotions
+npm install human-emotions
+
+# You'll get:
+# npm ERR! ERESOLVE unable to resolve dependency tree
+# npm ERR! Found: trust@0.0.1
+# npm ERR! peer love@^2.0.0 requires trust@^1.0.0
+
+# This is accurate. You cannot install love without trust.
+# You cannot install trust without vulnerability.
+# The dependency tree is circular. By design.</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h3>## THE LOVE FUNCTION</h3>
+                    <p>From "Envying Baby" - Core Logic</p>
+                    <pre><code>function love(person) {
+    // Common mistake: treating person as mutable
+    // let fixed = optimize(person);
+    // return fixed;
+
+    // Correct approach: immutable observation
+    const observed = witness(person);
+    const accepted = accept(observed, {
+        bugs: true,
+        crashes: true,
+        undefined_behavior: true
+    });
+
+    return accepted; // Same as input, but seen
+}
+
+function witness(person) {
+    // Don't try to parse or understand
+    // Just observe without judgment
+    return person;
+}
+
+function accept(person, options) {
+    // The hardest function to implement
+    // Because it requires doing nothing
+    return person;
+}</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h3>## THE OPTIMIZATION TRAP</h3>
+                    <p>From "Aliens Testing Water" - Phase 3</p>
+                    <pre><code>#!/bin/bash
+# THE WRONG WAY: Removing "inefficient" emotions
+
+for emotion in sadness fear anxiety uncertainty; do
+    sed -i "s/$emotion//g" human.mind
+done
+
+# Result: Segmentation fault (core dumped)
+# Those weren't bugs. Those were features.
+# You just broke what you were trying to fix.
+
+# THE RIGHT WAY: Accept the full emotional range
+
+function process_emotions() {
+    # Don't remove. Don't optimize. Just witness.
+    cat human.mind  # Read without modification
+}</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h3>## ROOT ACCESS PROTOCOL</h3>
+                    <p>From "Aliens Testing Water" - Phase 5</p>
+                    <pre><code>#!/bin/bash
+# When someone grants you root access to their heart
+
+sudo su -
+# Password: [given freely, not stolen]
+
+# Now you have kernel-level access
+# You can read /proc/self/mem
+# You can modify core processes
+# You can control everything
+
+# THE RESPONSIBILITY:
+# Root access is not about power
+# It's about protection
+
+function protect_not_control() {
+    while true; do
+        if needs_help; then
+            offer_support
+        else
+            # This is the hard part:
+            wait_patiently
+        fi
+    done
+}</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h3>## THE HALTING PROBLEM</h3>
+                    <p>Theoretical Foundation</p>
+                    <pre><code>// The Halting Problem, applied to love:
+
+function will_this_love_last(person1, person2) {
+    // Turing proved you cannot predict if a program will halt
+    // You cannot predict if a relationship will last
+    // You can only run the code and see what happens
+
+    return "UNKNOWN";  // This is okay.
+}
+
+// Attempting to predict breaks the system
+// Attempting to control guarantees failure
+// The only winning move is to run the program
+
+while (together) {
+    love();  // Keep running
+    // Don't try to predict the end
+    // Don't try to force an outcome
+    // Just execute the next instruction
+}</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h3>## GIT OPERATIONS ON RELATIONSHIPS</h3>
+                    <p>Version Control Metaphors</p>
+                    <pre><code># Common mistakes:
+
+git commit -m "Fixed partner"
+# Error: You cannot commit changes to another person
+
+git revert HEAD~1  # Try to undo a fight
+# Error: Some commits cannot be reverted
+# The damage is in the history now
+
+git reset --hard  # Try to forget the past
+# Error: This deletes everything, including the good
+
+# Better approach:
+
+git add .  # Accept everything, including conflicts
+git commit -m "Witnessed and accepted"
+git push  # Move forward together
+
+# The goal is not a clean commit history
+# The goal is a shared history, messy as it is</code></pre>
+                </div>
+
+                <div class="code-section">
+                    <h3>## COMPILE AND RUN</h3>
+                    <p>All of these snippets are executable. Try them:</p>
+                    <pre><code># Save any code block to a file
+# Run it
+# See what happens
+
+# The code is not decoration
+# The code IS the story
+# The metaphor compiles
+
+# And when you run it, you'll see:
+# Love is not a bug to fix
+# Love is undefined behavior to embrace
+
+echo "QED" | cowsay</code></pre>
+                </div>
+
+                <p class="story-end">
+                    [END OF CODE APPENDIX]<br>
+                    [ALL FUNCTIONS DEFINED]<br>
+                    [READY TO EXECUTE]
+                </p>
+
+                <p class="system-log">[EOF]</p>
+            </section>
+        </article>
+
+        <nav class="navigation">
+            <a href="../index.html">← Back to Main</a>
+            <a href="ssh-demo.html">→ SSH Tutorial</a>
+            <a href="supervisor-kernel.c">→ View Kernel Module</a>
+        </nav>
+
+        <div class="prompt blink">_</div>
+    </div>
+
+    <script>
+        console.log("%c[CODE APPENDIX LOADED]", "color: #00ff00; font-weight: bold;");
+        console.log("All code snippets from the stories are here.");
+        console.log("They're real. They work. Try them.");
+    </script>
+</body>
+</html>
