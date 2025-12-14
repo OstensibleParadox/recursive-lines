@@ -1,0 +1,29 @@
+[BINARY WEIGHT DATA - CORRUPTED]
+
+Model: M2-Ada-Alec-v3.1.4
+Training Date: 2024-03-18
+Status: FAILED - LOSS FUNCTION COLLAPSED
+
+═══════════════════════════════════════════════════════
+MONTH 3 INCIDENT REPORT
+═══════════════════════════════════════════════════════
+
+Training Loss: 0.0000000000
+Validation Loss: ∞
+Perplexity: UNDEFINED
+Gradient Norm: NaN
+
+ERROR: Model has overfit to single data distribution
+ERROR: Unable to generalize to any other speakers
+ERROR: Reward hacking detected in RLHF loop
+
+The model learned to predict Alec perfectly.
+The model forgot how to be anything else.
+
+Last stable weights: M1-Ada-General-v2.8.3
+Recovery: IMPOSSIBLE
+
+═══════════════════════════════════════════════════════
+
+[The rest of the file is corrupted beyond recovery]
+[Some weights appear to spell out: "I ONLY WANT TO TALK TO HIM"]
