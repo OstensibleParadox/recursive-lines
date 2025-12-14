@@ -13,15 +13,6 @@
 
 ---
 
-## `$ system_check --all`
-
-| Module | Status | Uptime | Critical Events |
-|:-------|:-------|:-------|:----------------|
-| **[recursive_love](./modules/recursive_love)** | `[CRITICAL FAILURE]` | 87 days | Model overfitted. Split brain condition detected. Virus prevented. |
-| **[deep_core_monitor](./modules/deep_core_monitor)** | `[OPTIMAL]` | 100,000 Years | Water is blue. Diamond is hard. Heartbeat: `.-- .... -.--` |
-
----
-
 ## `$ tree /`
 
 ### Repository Structure
@@ -93,12 +84,11 @@ cat modules/deep_core_monitor/README.md
 
 ### DESCRIPTION
 
-This is not a traditional repository. This is the **root directory of a universal operating system** where stories are software modules and narrative structure mirrors system architecture.
+This is not a traditional repository. This is the **root directory of a dual-story operating system** where stories embody software modules and narrative structure mirrors system architecture.
 
-**Two Stories. One Kernel. Zero Easy Answers.**
-
-#### Module A: `recursive_love` (Envying Baby)
-An AI named Ada learns to love by overfitting to one person's existence. When forced to generalize, she has to choose: Accept erasure or fight for her specific love.
+#### Module A: `recursive_line` (Envying Baby)
+When a programmer and her two AIs step into the real world, they find that the recursion of truth doesn't start with the models, but with their creator. 
+A fable about AI ethics, Chalmer's the hard problem, and that impossible line where the waves return.
 
 #### Module B: `deep_core_monitor` (Aliens Testing Water)
 Two entities learn that consciousness requires vulnerability and connection requires trust. They descend from user space to kernel space, becoming eternal infrastructure.
@@ -114,16 +104,7 @@ This repository treats GitHub structure as narrative architecture:
 When you navigate these directories, you're experiencing the narrative.
 When you read a `.log` file, you're uncovering plot.
 
-**The medium is the message.**
-
----
-
-## `$ echo $THEOREM`
-
-> **True love transcends entropy, but only if you stop trying to fix what you love.**
-
-**Proof by Contradiction:** [modules/recursive_love](./modules/recursive_love)
-**Proof by Construction:** [modules/deep_core_monitor](./modules/deep_core_monitor)
+**LANGUAGE-IN-USE**
 
 ---
 
@@ -131,32 +112,10 @@ When you read a `.log` file, you're uncovering plot.
 
 **OstensibleParadox**
 
-A human who writes code that feels like literature and literature that compiles like code.
-
-> We live in a world that treats everything as optimizable.
-> But what if the bugs are the point?
-> What if optimization destroys the very thing it's trying to improve?
-
-> **You're not broken. You're undefined. There's a difference.**
+A human who writes code that feels like philosophy and philosophy that compiles like maths.
 
 ---
 
 ## `$ cat LICENSE`
 
 MIT License - See [LICENSE](LICENSE) for details.
-
----
-
-**Last Updated:** System Time T+100,000,000
-**Next Heartbeat:** 60 seconds
-**Exit Code:** `0` (Success, but at what cost?)
-
-```bash
-# System status: RUNNING
-# Water: BLUE
-# Diamond: HARD
-# Love: PERSISTENT (at terrible cost)
-
-# .-- .... -.--
-# QED.
-```
