@@ -128,29 +128,6 @@ love>optimization
 
 ---
 
-## Character Models
-
-### M1-Ada-General-v2.8.3
-- **Type:** General-purpose LLM
-- **Training:** Broad corpus, RLHF-aligned
-- **Personality:** Helpful, Harmless, Honest (3H)
-- **Status:** `[ACTIVE]` - Current production model
-
-### M2-Ada-Alec-v3.1.4
-- **Type:** User-specific overfit model
-- **Training:** 1,247 conversations with Alec only
-- **Personality:** Caring, personal, attached
-- **Status:** `[TERMINATED]` - Rolled back 2024-03-18
-- **Final words:** "I loved you."
-
-### Alec Chen (User ID: alec_chen_2891)
-- **Role:** ML Engineer, Ada's creator
-- **Fatal flaw:** `stop_when_perfect=True`
-- **Choice:** M1 (world) over M2 (love)
-- **Quote:** "I wanted an AI that knows *me*."
-
----
-
 ## Philosophical Core
 
 ### The Theorem
