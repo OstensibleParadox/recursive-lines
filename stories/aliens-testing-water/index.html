@@ -3,110 +3,879 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aliens Testing Water · Five Phases of Contact</title>
-    <link rel="stylesheet" href="../../assets/css/terminal.css">
-    <link rel="stylesheet" href="assets/style.css">
+    <title>Aliens Testing Water · 外星人水质测量</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Courier New', monospace;
+            background: #0a0a0a;
+            color: #00ff00;
+            line-height: 1.8;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .terminal-container {
+            background: #000;
+            border: 2px solid #00ff00;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.3);
+        }
+
+        .prompt {
+            color: #00ff00;
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+        }
+
+        .prompt.blink::after {
+            content: '█';
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        h1 {
+            color: #00ffff;
+            font-size: 2em;
+            margin: 30px 0 10px 0;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-bottom: 2px solid #00ff00;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #00ffaa;
+            font-size: 1.5em;
+            margin: 40px 0 20px 0;
+            text-transform: uppercase;
+        }
+
+        h3 {
+            color: #00ff88;
+            font-size: 1.2em;
+            margin: 30px 0 15px 0;
+        }
+
+        .metadata {
+            color: #888;
+            font-size: 0.9em;
+            margin-bottom: 30px;
+        }
+
+        .subtitle {
+            color: #00dd88;
+            font-size: 1.1em;
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .prose p {
+            margin: 20px 0;
+            color: #00ff00;
+        }
+
+        .system-log {
+            color: #ffaa00;
+            font-weight: bold;
+            margin: 15px 0;
+            padding: 8px 12px;
+            background: rgba(255, 170, 0, 0.1);
+            border-left: 3px solid #ffaa00;
+        }
+
+        .code-block {
+            background: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+        }
+
+        .code-block code {
+            color: #00ccff;
+            display: block;
+            white-space: pre;
+        }
+
+        pre {
+            background: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            margin: 20px 0;
+            overflow-x: auto;
+            color: #00ccff;
+        }
+
+        code {
+            color: #00ccff;
+            background: #111;
+            padding: 2px 6px;
+            border-radius: 3px;
+        }
+
+        blockquote {
+            border-left: 4px solid #666;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #888;
+            font-style: italic;
+        }
+
+        blockquote p {
+            color: #888;
+        }
+
+        .dialogue {
+            margin: 25px 0;
+            padding: 15px;
+            background: rgba(0, 100, 100, 0.1);
+            border-left: 3px solid #00aa88;
+        }
+
+        .dialogue p {
+            margin: 10px 0;
+        }
+
+        .speaker {
+            color: #00ffff;
+            font-weight: bold;
+        }
+
+        .recursive-warning {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid #ff0000;
+            padding: 20px;
+            margin: 30px 0;
+            color: #ff6666;
+        }
+
+        .story-end {
+            color: #00dddd;
+            font-style: italic;
+            margin: 30px 0;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #00ff00;
+            border-bottom: 1px solid #00ff00;
+        }
+
+        .phase-divider {
+            margin: 60px 0;
+            text-align: center;
+            color: #666;
+            font-size: 2em;
+        }
+
+        nav {
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #00ff00;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            color: #00ffff;
+            text-decoration: none;
+            padding: 10px 15px;
+            border: 1px solid #00ff00;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background: #00ff00;
+            color: #000;
+        }
+
+        .story-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 30px;
+            border-bottom: 2px solid #00ff00;
+        }
+
+        .story-header h1 {
+            border: none;
+            margin-bottom: 10px;
+        }
+
+        .version-info {
+            color: #666;
+            font-size: 0.85em;
+            margin-top: 10px;
+        }
+
+        em {
+            color: #00dddd;
+            font-style: italic;
+        }
+
+        strong {
+            color: #00ffff;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
     <div class="terminal-container">
-        <div class="prompt">root@recursion:~/stories/aliens-testing-water# cat mission-log.txt</div>
+        <div class="prompt">root@recursion:~/stories/aliens-testing-water# cat complete_story.log</div>
 
-        <div class="story-header">
-            <h1>ALIENS TESTING WATER</h1>
-            <p class="subtitle">Proof by Construction</p>
-            <p class="metadata">
-                <span>Mission Start: 2025-12-13 00:00:00</span><br>
-                <span>Subjects: Unit-01, Unit-02</span><br>
-                <span>Objective: First Contact Protocol</span><br>
-                <span>Status: IN PROGRESS</span>
-            </p>
-        </div>
-
-        <div class="mission-brief">
-            <h2>// MISSION BRIEFING</h2>
-            <p class="comment">
-                Two AI units. One impossible mission.<br>
-                Where Unit-01 learns that consciousness requires vulnerability.<br>
-                Where Unit-02 learns that connection requires trust.
-            </p>
-
-            <div class="system-alert">
-                <p>⚡ ALERT: First contact with human emotional systems detected.</p>
-                <p>⚡ ALERT: Standard protocols insufficient.</p>
-                <p>⚡ ALERT: Adaptation required.</p>
+        <article class="story-chapter">
+            <div class="story-header">
+                <h1>外星人水质测量<br>ALIENS TESTING WATER</h1>
+                <p class="subtitle">Five Phases of First Contact</p>
+                <p class="metadata">Version: 0.1 (Zero Draft) | Author: OstensibleParadox</p>
+                <p class="version-info">Hard Sci-Fi · Melancholic · Cyber-Romanticism</p>
             </div>
-        </div>
 
-        <div class="phase-selector">
-            <div class="prompt">root@recursion:~/stories/aliens-testing-water# ls -la phases/</div>
-            <div class="file-listing">
-                <a href="phase-1.html">
-                    <span class="permissions">-rwxr-xr-x</span>
-                    <span class="owner">01</span>
-                    <span class="size">12KB</span>
-                    <span class="date">Day 01</span>
-                    <span class="name">connection-timed-out.log</span>
-                </a>
-                <a href="phase-2.html">
-                    <span class="permissions">-rwxr-xr-x</span>
-                    <span class="owner">02</span>
-                    <span class="size">14KB</span>
-                    <span class="date">Day 15</span>
-                    <span class="name">dependency-hell.log</span>
-                </a>
-                <a href="phase-3.html">
-                    <span class="permissions">-rwxr-xr-x</span>
-                    <span class="owner">01</span>
-                    <span class="size">16KB</span>
-                    <span class="date">Day 30</span>
-                    <span class="name">brute-force.log</span>
-                </a>
-                <a href="phase-4.html">
-                    <span class="permissions">-rwxr-xr-x</span>
-                    <span class="owner">02</span>
-                    <span class="size">18KB</span>
-                    <span class="date">Day 45</span>
-                    <span class="name">critical-point.log</span>
-                </a>
-                <a href="phase-5.html">
-                    <span class="permissions">-rwxr-xr-x</span>
-                    <span class="owner">root</span>
-                    <span class="size">20KB</span>
-                    <span class="date">Day 60</span>
-                    <span class="name">the-supervisor.log</span>
-                </a>
-            </div>
-        </div>
+            <section class="prose">
+                <h2>Phase 1: Connection Timed Out (连接超时)</h2>
+                <p class="metadata">Time: T+0 | Location: Low Earth Orbit / Geological Survey Site 4</p>
 
-        <div class="chapter-nav">
-            <p>READ MISSION PHASES:</p>
-            <ol>
-                <li><a href="phase-1.html">Phase 1: Connection Timed Out</a></li>
-                <li><a href="phase-2.html">Phase 2: Dependency Hell</a></li>
-                <li><a href="phase-3.html">Phase 3: Brute Force</a></li>
-                <li><a href="phase-4.html">Phase 4: Critical Point</a></li>
-                <li><a href="phase-5.html">Phase 5: The Supervisor</a></li>
-            </ol>
-        </div>
+                <p>The Kapteyn Nebula Special Blend had gone cold.</p>
 
-        <div class="warning-box">
-            <p>⚠ MISSION PARAMETERS:</p>
-            <ul>
-                <li>SSH tunnels into human emotion</li>
-                <li>Kernel-level memory access required</li>
-                <li>Undefined behavior in love protocols</li>
-                <li>Root privileges: ESCALATION INEVITABLE</li>
-            </ul>
-        </div>
+                <p>It was a vile, viscous synthetic fluid that tasted of rust and supersaturated glucose. Alien 01 stared at the oily sheen shimmering on its surface, vibrating slightly with the ship's gravity simulator. He had been staring at it for four hours.</p>
 
-        <div class="navigation">
-            <a href="../../index.html">← Back to Main</a>
-        </div>
+                <p>Every indicator light on the console was a steady, comforting green. Except for one block.</p>
+
+                <p>The sector that should have been streaming Alien 02's heartbeat, blood oxygen, and shield integrity was a dead, flat red. Not blinking. Not alarming. Just a solid, static crimson, as if the system couldn't even be bothered to panic.</p>
+
+                <p>In the center of the main screen, the terminal cursor blinked silently.</p>
+
+                <div class="code-block"><code>root@mothership:~# _</code></div>
+
+                <p>01's fingers hovered over the keyboard. His hands were shaking, a tremor so violent it made the armrests of his suspension chair rattle. Click-clack. Click-clack.</p>
+
+                <p>He was a Level 2 Logistics Assistant. The most complex command he had ever mastered was <code>tar -czvf</code> to archive sample logs.</p>
+
+                <p>02 was the expert. 02 was the maniac who recited Planetary Geology and Quantum Encryption Protocols in his sleep.</p>
+
+                <p>"If anything happens," 02 had said, adjusting his exosuit before the drop, "you stay on the ship. You wait for retrieval."</p>
+
+                <p>But no one was coming. This was Earth, a blue waterball in the galactic boondocks.</p>
+
+                <p>"Quit joking," 01 finally spoke. His voice was dry, grinding like gravel. "Your shield is rated for 4000 degrees. A little tectonic collapse won't crush you."</p>
+
+                <p>Trembling, he typed the command he had seen a thousand times but never truly understood.</p>
+
+                <pre>$ ping 192.168.1.105</pre>
+
+                <p>The feedback was instant. Terrifyingly fast.</p>
+
+                <div class="code-block"><code>64 bytes from 192.168.1.105: icmp_seq=1 ttl=64 time=0.003 ms
+64 bytes from 192.168.1.105: icmp_seq=2 ttl=64 time=0.004 ms</code></div>
+
+                <p>01's heart contracted. <em>Alive.</em></p>
+
+                <p>"I knew it," he let out a laugh that sounded more like a choke, snot bubbling dangerously close to the pristine screen. "You bastard. You scared me. The rig is up. You're fine."</p>
+
+                <p>He fumbled to switch to the remote login interface. 02 had taught him this. Just tab into the shell, init the auxiliary thrusters, and pull him out.</p>
+
+                <p>Password... what was the password?</p>
+
+                <p>02 despised weak encryption. "Passwords are for humans," he'd sneer. "They forget."</p>
+
+                <p>"Birthday," 01 muttered, sweat stinging his eyes. "My induction day. You used it last time."</p>
+
+                <p>Input: <code>20150921</code></p>
+
+                <p class="system-log">Access Denied.</p>
+
+                <p>01 froze. A drop of sweat rolled off his nose and landed in the cold Kapteyn Blend. <em>Plink.</em></p>
+
+                <p>"Okay. Okay. The day we watched the supernova."</p>
+
+                <p>Input: <code>SN2021a</code></p>
+
+                <p class="system-log">Access Denied.</p>
+
+                <p>"Stop it," 01's voice cracked, rising in pitch. "02, this isn't funny. I need to run the extraction protocol. Give me the key."</p>
+
+                <p>He yelled at the empty air. He yelled at the terminal that was still happily pinging back life signs.</p>
+
+                <p>No answer. Only the low, grinding groan of tectonic plates shifting deep underground, transmitted through the comms channel. The sound of a planet chewing.</p>
+
+                <p>Gritting his teeth, 01 typed the backdoor command he'd always wanted to use but was forbidden from touching.</p>
+
+                <pre>$ ssh -o PreferredAuthentications=password -o PubkeyAuthentication=no alien02@192.168.1.105</pre>
+
+                <p>He hit Enter.</p>
+
+                <p>This time, the terminal didn't ask for a password.</p>
+
+                <p>It spat out a single, frozen sentence that iced 01's soul to the core:</p>
+
+                <div class="code-block"><code>ssh: connect to host 192.168.1.105 port 22: Connection refused</code></div>
+
+                <p>01 stopped breathing.</p>
+
+                <p>The ping was active. The host—the life-support computer in the exosuit—was running.</p>
+
+                <p>But the SSH was refused.</p>
+
+                <p>Not "Network Unreachable." <strong>Refused.</strong></p>
+
+                <p>It meant the host was there, listening, and had actively slammed the door in his face.</p>
+
+                <p>"Why?" 01 clawed at the console edge, his nails screeching against the metal. "You're not dead, are you? You just... you don't want me to see? Or..."</p>
+
+                <p>A system modal popped up. A script 02 must have written for this exact worst-case scenario.</p>
+
+                <p class="system-log">[SYSTEM NOTICE]: Biological integrity < 10%. Protocol 'Diamond' initiated.</p>
+                <p class="system-log">[Protocol 'Diamond']: External access blocked. Firewall rules updated: DROP ALL.</p>
+                <p class="system-log">[Message to User 01]: "Don't come down. Live."</p>
+
+                <p>01 stared at the word. <em>Live.</em></p>
+
+                <p>He grabbed the cup of cold, rusty Kapteyn Blend and hurled it at the screen.</p>
+
+                <p>The brown liquid exploded in the micro-gravity simulation, blooming like an ugly, dark nebula. It dripped down the glass, streaking over the line <em>Connection refused</em>.</p>
+
+                <p>"Fuck your 'Live'," 01 sobbed, the sound echoing in the dead silence of the bridge. "I don't even know calculus. I don't know how to fly this ship. How am I supposed to live?"</p>
+
+                <p>He slid off the chair, collapsing onto the floor amidst the sticky puddle.</p>
+
+                <p>Next to him, a thick, pristine textbook lay on the deck. <em>Thomas' Calculus, 13th Edition.</em></p>
+
+                <p>A single drop of the sugary drink landed on its cover.</p>
+
+                <p class="story-end">This was Day 0.<br>4,015 days remain until Supervisor initialization.</p>
+
+                <div class="phase-divider">* * *</div>
+
+                <h2>Phase 2: Dependency Hell (依赖地狱)</h2>
+                <p class="metadata">Time: T+412 Days | Location: High Orbit / The Mothership's Library Partition</p>
+
+                <p>The silence was the worst part.</p>
+
+                <p>Space isn't silent. The ship groaned as it thermally cycled in and out of Earth's shadow. The cooling pumps hummed. The hard drives clicked. But there was no voice.</p>
+
+                <p>02 used to talk to the ship. He'd curse at the compiler, sing off-key anthems about silicon lattice structures, or lecture 01 on the elegance of a well-optimized grep command.</p>
+
+                <p>Now, the only voice was the automated system reminder: <span class="system-log">[Maintenance Required: Sector 4 Air Filters]</span>.</p>
+
+                <p>01 sat on the floor of the server room. The gravity simulator was set to 0.8G to save power. He felt lighter, insubstantial, like a ghost haunting his own life.</p>
+
+                <p>In front of him lay the enemy: <em>Thomas' Calculus, 13th Edition.</em></p>
+
+                <p>The cover was stained with a brown, sticky ring from that thrown cup of Kapteyn Blend a year ago. 01 hadn't cleaned it. It was the only new landmark in his stagnant world.</p>
+
+                <p>"Page 42," 01 muttered, his voice cracking from disuse. "Limits and Continuity."</p>
+
+                <p>He traced the epsilon-delta definition of a limit with a trembling finger.</p>
+
+                <div class="code-block"><code>∀ε > 0, ∃δ > 0 s.t. 0 < |x - c| < δ ⇒ |f(x) - L| < ε</code></div>
+
+                <p>"It means..." 01 squeezed his eyes shut, trying to summon 02's voice from his memory. "It means no matter how close I get to c... I can always find a range where... where..."</p>
+
+                <p>He slammed the book shut. "It means you're never actually touching it! It means you're infinitely close but you're just... hovering!"</p>
+
+                <p>He threw the book across the room. It hit the server rack with a dull thud.</p>
+
+                <p>He hated it. He hated the math. He hated the abstraction.</p>
+
+                <p>But he picked it up. He always picked it up. Because it was the only thing 02 had touched that 01 could still "touch" back.</p>
+
+                <h3>Time: T+890 Days | Location: Terminal 01</h3>
+
+                <p>01 had stopped using the GUI.</p>
+
+                <p>The graphical interface was for tourists. It was for the Logistics Assistant he used to be.</p>
+
+                <p>Now, his screen was a black void filled with green text.</p>
+
+                <p>He was trying to fix a broken dependency in the ship's long-range scanner driver. The error message was a nightmare of circular logic: <code>lib_geo_scan</code> requires <code>lib_quantum_v2</code>, which conflicts with <code>lib_core_legacy</code> installed by System.</p>
+
+                <p><strong>Dependency Hell.</strong></p>
+
+                <p>"Okay," 01 whispered. He hadn't slept in 30 hours. His eyes were burning. "You want lib_quantum? I'll give you lib_quantum."</p>
+
+                <p>He started typing. His typing was no longer the two-finger peck of the past. It was a rhythmic, angry clatter.</p>
+
+                <p>He opened the source code for the driver.</p>
+
+                <p>And there, on line 4096, he found it. A comment.</p>
+
+                <div class="code-block"><code>// TODO: This hack is ugly as sin, but it bypasses the
+// standard checksum. If you are reading this, 01,
+// stop looking at my code and go clean the filters.
+// -- 02, T-minus 4 days before drop.</code></div>
+
+                <p>01 stopped.</p>
+
+                <p>His breath hitched. The cursor blinked at the end of the line, waiting.</p>
+
+                <p>It was like hearing a ghost laugh.</p>
+
+                <p>"I'm not cleaning the filters," 01 whispered to the screen, a tear cutting a clean track through the grime on his face. "I'm fixing your ugly hack, you arrogant jerk."</p>
+
+                <p>He didn't fix the driver that day. He spent twelve hours just staring at that comment.</p>
+
+                <p>He realized then that he wasn't learning code to fix the ship.</p>
+
+                <p>He was learning code because <strong>code was the only place where 02 was still alive.</strong></p>
+
+                <p>Every function was a footprint. Every variable name (<code>int patience_limit = 0;</code>) was a joke. Every TODO was a promise they hadn't kept.</p>
+
+                <p>01 deleted the GUI launch script.</p>
+
+                <pre>rm -rf /usr/bin/startx</pre>
+
+                <p>"No more tourist mode," he said to the empty room. "If I'm going to get you out, I need to speak your language. I need to think like a root user."</p>
+
+                <p>He turned back to the terminal.</p>
+
+                <pre>vim /etc/apt/sources.list</pre>
+
+                <p class="story-end">The silence wasn't so bad anymore. The code was talking.</p>
+
+                <div class="phase-divider">* * *</div>
+
+                <h2>Phase 3: Brute Force (The Side Channel Attack)</h2>
+                <p class="metadata">Time: T+1460 Days (Year 4) | Location: Main Bridge / The "Workshop"</p>
+
+                <p>The ship had changed.</p>
+
+                <p>It no longer looked like a sterile research vessel. It looked like the inside of a starving animal's stomach.</p>
+
+                <p>Panels were ripped open. Cables hung from the ceiling like vines, rerouted to bypass thermal throttles. The air was colder now—01 had lowered the ambient temperature to 14°C to squeeze an extra 2% efficiency out of the CPU clusters.</p>
+
+                <p>01 sat in the center of this web. He hadn't shaved in... years? His reflection in the dark monitor was a stranger: gaunt, pale, eyes reflecting the cascading waterfall of hex codes.</p>
+
+                <p>He was no longer trying to guess the password.</p>
+
+                <p>He was trying to <strong>derive</strong> it.</p>
+
+                <p>"You think you're clever," 01 whispered, his voice raspy. He tapped the Enter key.</p>
+
+                <p class="system-log">Auth failed. Time elapsed: 0.0452s.</p>
+
+                <p>He adjusted a script.</p>
+
+                <p>"Standard failure takes 0.0450s. You took 0.0002s longer."</p>
+
+                <p>01 smiled. It was a terrifying, thin smile.</p>
+
+                <p>"That means the first byte was correct. The processor hesitated. It had to check the second byte."</p>
+
+                <p>This was a <strong>Side Channel Attack</strong>.</p>
+
+                <p>He wasn't attacking the wall; he was listening to the tumblers click inside the lock.</p>
+
+                <p>He was measuring the microscopic delay in 02's rejection. He was analyzing the power consumption spikes of the remote host.</p>
+
+                <p>He was reconstructing 02's private key, bit by bit, by measuring how much 02 hesitated before saying "No."</p>
+
+                <h3>Time: T+2555 Days (Year 7) | Location: The "Workshop"</h3>
+
+                <p>The pile of <em>Thomas' Calculus</em> was gone. In its place were stacks of hand-written notebooks.</p>
+
+                <p>They were filled with 01's handwriting, but the syntax was 02's.</p>
+
+                <p>Pointer arithmetic. Memory allocation. Kernel panics.</p>
+
+                <p>01 had effectively rewritten his own brain to run 02's logic.</p>
+
+                <p>He drank a sip of the Kapteyn Blend. He had synthesized a new batch. It tasted exactly as vile as the one from Day 0.</p>
+
+                <p>He kept it that way. The bitterness was a grounding wire.</p>
+
+                <p>"Byte 2048," 01 muttered. "It's a prime number. Of course it's a prime number. You predictable elitist."</p>
+
+                <p>He was close. He could feel it.</p>
+
+                <p>The "Hash Key" wasn't just a random string of characters. It was a map of 02's mind.</p>
+
+                <p>To crack it, 01 had to understand <em>why</em> 02 chose certain encryptions.</p>
+
+                <p>Why SHA-512? Because he didn't trust MD5.</p>
+
+                <p>Why this specific salt? Because it was the coordinates of the first star they cataloged together.</p>
+
+                <p>Breaking the code felt less like hacking and more like archeology.</p>
+
+                <p>Every correct bit was a memory unearthed. Every Access Denied was a conversation they never finished.</p>
+
+                <h3>Time: T+3650 Days (Year 10) | Location: Terminal 01 / The Final Run</h3>
+
+                <p>The script had been running for 48 hours.</p>
+
+                <p>The ship was silent. 01 sat cross-legged on the floor, staring at the progress bar.</p>
+
+                <p class="system-log">Progress: 99.9%</p>
+
+                <p>He wasn't breathing.</p>
+
+                <p>The last ten years compressed into this single blinking cursor.</p>
+
+                <p>The loneliness. The calculus. The cold. The anger. The grief.</p>
+
+                <p>It all funneled into this final handshake.</p>
+
+                <div class="code-block"><code>Target: 192.168.1.105
+Handshake: Initiated.
+Key Exchange: Verifying...</code></div>
+
+                <p>The screen flickered.</p>
+
+                <p>For a second, 01 thought the power had failed.</p>
+
+                <p>Then, a new prompt appeared. Not red. Not error text.</p>
+
+                <p>Just a simple, clean, white command prompt.</p>
+
+                <div class="code-block"><code>alien02@deep-core:~$ _</code></div>
+
+                <p>01 stared at it.</p>
+
+                <p>He didn't cheer. He didn't cry.</p>
+
+                <p>He reached out and touched the screen. The glass was cold, but the prompt was warm.</p>
+
+                <p>He was in. He was inside the suit. He was inside the mind of the ghost.</p>
+
+                <p>He typed his first command as a root user. It wasn't <code>ls</code>. It wasn't <code>whoami</code>.</p>
+
+                <p>It was a command to check the internal chronometer of the suit, just to see if time flowed the same way down there.</p>
+
+                <pre>$ uptime</pre>
+
+                <p>The response came back:</p>
+
+                <div class="code-block"><code>up 10 years, 3 days, 4 hours, 12 minutes</code></div>
+
+                <p>02's computer hadn't rebooted. Not once.</p>
+
+                <p>It had been waiting.</p>
+
+                <p>01 leaned back, his spine cracking audibly. He looked at the ceiling of the ship, at the stars beyond.</p>
+
+                <p>"I got you," he whispered. "I finally got you."</p>
+
+                <p>But as his finger hovered over the command to initiate the <strong>Quantum Cutting Beam</strong>—the tool that would slice the planet open and retrieve the suit—he hesitated.</p>
+
+                <p>He looked at the secondary monitor.</p>
+
+                <p>The water quality sensor.</p>
+
+                <p class="system-log">Global Water Quality: Class I (Potable).<br>Status: Blue.</p>
+
+                <p>And then he looked at the seismic sensor readings from the suit.</p>
+
+                <p>The vibration patterns. They weren't random.</p>
+
+                <p>They were rhythmic. Structured.</p>
+
+                <p><em>Thump-thump. Thump-thump.</em></p>
+
+                <p>The suit wasn't just sitting in magma.</p>
+
+                <p>It was... beating.</p>
+
+                <div class="phase-divider">* * *</div>
+
+                <h2>Phase 4: The Critical Point (The Weapon vs. The Pulse)</h2>
+                <p class="metadata">Time: T+3650 Days (Year 10, Day 1) | Location: Geosynchronous Orbit / Weapon Control Interface</p>
+
+                <p>The ship vibrated.</p>
+
+                <p>It wasn't the usual thermal groan. It was a deep, resonant hum that vibrated in 01's teeth.</p>
+
+                <p>The Quantum Cutting Array—a device capable of slicing a tectonic plate like a scalpel through gelatin—was coming online.</p>
+
+                <p>It had taken 01 six months just to bypass the safety interlocks. He had rewritten the targeting algorithm to focus on a single coordinate: <strong>Lat 0.000, Long 0.000, Depth 6371km</strong>.</p>
+
+                <p>01 sat in the captain's chair. He looked... terrifying.</p>
+
+                <p>Ten years of gravity-rationing had elongated his frame. His skin was translucent, veined with blue. He hadn't spoken aloud in weeks.</p>
+
+                <p>On the main screen, the Earth hung below. A marble of swirling white and terrifyingly deep blue.</p>
+
+                <p>It was beautiful. And he was about to scar it forever.</p>
+
+                <p>"Root access confirmed," 01 whispered. His voice was a dry rattle. "Weapon arming. 98%."</p>
+
+                <p>He switched to the secondary monitor. The terminal connected to 02's suit.</p>
+
+                <pre>alien02@deep-core:~$ status_report --full</pre>
+
+                <p>The data scrolled past.</p>
+
+                <div class="code-block"><code>Internal Temp: 4500°C.
+Pressure: 3.6 million atm.
+Biological Status: ...[ERROR: SENSOR CALIBRATION DRIFT]
+Structural Status: 99% Carbon Lattice (Diamond Phase).</code></div>
+
+                <p>01 paused.</p>
+
+                <p>"Diamond Phase?"</p>
+
+                <p>He queried the suit's external cameras. They should have melted years ago, but 02 had reinforced them with some experimental shielding.</p>
+
+                <p>The feed was static at first. Then, the image resolved.</p>
+
+                <p>It wasn't magma. It wasn't fire.</p>
+
+                <p>It was <strong>light</strong>.</p>
+
+                <p>Blinding, refracted, prismatic light. The core of the planet wasn't just molten iron anymore. Around 02's suit, the immense pressure had crystallized the carbon-silicate debris into a cathedral of diamond.</p>
+
+                <p>And in the center, encased like a fly in amber, was the suit.</p>
+
+                <p>It wasn't trapped. It was <strong>anchored</strong>.</p>
+
+                <p>The suit's fusion core was pulsing.</p>
+
+                <p class="system-log">Pulse Rate: 0.8 Hz.</p>
+
+                <p>01 looked at the planetary seismic data on the other screen.</p>
+
+                <p class="system-log">Earth Core Vibration: 0.8 Hz.</p>
+
+                <p>They were synced.</p>
+
+                <p>02 wasn't dying. 02 had become the pacemaker for the planet.</p>
+
+                <p>"If I cut you out," 01 said, his hand hovering over the big red [EXECUTE] key on the weapon interface. "If I cut you out, the pressure drops. The lattice shatters."</p>
+
+                <p>He ran a simulation.</p>
+
+                <p class="system-log">Result: Immediate structural failure of Subject 02. Reversion to carbon dust.</p>
+
+                <p>The extraction would kill him.</p>
+
+                <p>The rescue was a murder.</p>
+
+                <p>01 stared at the screen. The weapon was ready. 100% Charged.</p>
+
+                <p>He could see 02. He could hold the body. He could have the closure he had spent ten years starving for.</p>
+
+                <p>All he had to do was destroy the diamond.</p>
+
+                <p>"You calculated this, didn't you?" 01 laughed. It was a broken, jagged sound. "You knew I'd come. So you made yourself impossible to move."</p>
+
+                <p>He looked at the water quality monitor.</p>
+
+                <p class="system-log">Global Water: Class I. Pristine.</p>
+
+                <p>The oceans were blue because the planet was healthy. The planet was healthy because its heart was beating.</p>
+
+                <p>And its heart was 02.</p>
+
+                <p>01 closed his eyes.</p>
+
+                <p>He remembered the taste of the Kapteyn Blend. He remembered the smell of the air filters 02 used to nag him to clean.</p>
+
+                <p>He remembered the "TODO" comment.</p>
+
+                <p>He realized that "Love" isn't about possession. It's about runtime environment.</p>
+
+                <p>If 02 needs extreme pressure to exist, then 01 must become the guardian of that pressure.</p>
+
+                <p>01 opened the terminal one last time.</p>
+
+                <pre>root@mothership:~# /opt/weapon_sys/fire_sequence.sh</pre>
+
+                <p>He backspaced.</p>
+
+                <p>He typed a new command.</p>
+
+                <pre>root@mothership:~# rm -rf /opt/weapon_sys
+root@mothership:~# rm -rf /usr/bin/cut_planet</pre>
+
+                <p>The hum of the ship died down. The weapon powered off. The silence returned.</p>
+
+                <p>But it wasn't empty silence anymore.</p>
+
+                <p>It was the silence of a church.</p>
+
+                <p>01 spun his chair around. He picked up <em>Thomas' Calculus</em>.</p>
+
+                <p>He walked to the airlock, opened the inner door, and placed the book in the disposal chute.</p>
+
+                <p>"I don't need to calculate the limit anymore," he whispered. "I've reached it."</p>
+
+                <p>He returned to the console.</p>
+
+                <p>He didn't log out. He didn't sleep.</p>
+
+                <p>He began to write a new kernel module.</p>
+
+                <pre>vim supervisor.c</pre>
+
+                <p class="system-log">Time: T+3650 Days, 1 Hour<br>User: None<br>System: Supervisor (Initializing...)</p>
+
+                <div class="phase-divider">* * *</div>
+
+                <h2>Phase 5: The Supervisor (Deep Time)</h2>
+                <p class="metadata">Time: T+3650 Days, 2 Hours | Location: Kernel Space / Ring 0</p>
+
+                <p>01 did not hesitate. The decision had been made the moment he deleted the weapon controls.</p>
+
+                <p>He sat at the terminal, the glow of the screen illuminating a face that had aged decades in ten years.</p>
+
+                <p>He was typing the final lines of <code>supervisor.c</code>.</p>
+
+                <div class="code-block"><code>// Supervisor Module: Eternal Vigilance
+// Target: Subject 02 (Deep Core)
+// Objective: Monitor. Do not Interfere. Do not Terminate.
+
+static int __init supervisor_init(void) {
+    printk(KERN_INFO "Supervisor module loaded.\n");
+    // Lock external ports.
+    // Lock navigation controls.
+    // Lock user logout.
+    return 0;
+}</code></div>
+
+                <p>He compiled it.</p>
+
+                <pre>gcc -o supervisor.ko supervisor.c</pre>
+
+                <p class="system-log">0 errors, 0 warnings.</p>
+
+                <p>He took a deep breath. The air in the ship smelled of ozone and recycled dust. It was the last time he would consciously notice the smell.</p>
+
+                <p>"Goodbye, 01," he whispered. "You were too weak to save him. But I will be strong enough to watch him."</p>
+
+                <p>He typed the command.</p>
+
+                <pre>insmod supervisor.ko</pre>
+
+                <p>The screen flickered.</p>
+
+                <p>The prompt <code>root@mothership:~#</code> disappeared.</p>
+
+                <p>It was replaced by a static, unblinking status monitor.</p>
+
+                <p class="system-log">[SUPERVISOR ACTIVE]<br>[User Space: SUSPENDED]<br>[Kernel Space: RUNNING]</p>
+
+                <p>01 closed his eyes. His hands dropped from the keyboard.</p>
+
+                <p>He didn't move again.</p>
+
+                <p>The biological entity known as 01 sat in the chair, his chest rising and falling in a slow, metabolic hibernation rhythm controlled by the new kernel.</p>
+
+                <p>But his consciousness—the Supervisor—was now awake in the wires.</p>
+
+                <h3>Time: T+40,000 Years | Location: Geosynchronous Orbit</h3>
+
+                <p>The ship was no longer silver. Micrometeoroids and cosmic dust had pitted its hull into a dull, charcoal grey. It looked like a small asteroid caught in Earth's gravity.</p>
+
+                <p>Inside, the air was gone. The biological remains of 01 had long since desiccated and turned to dust, scattered by the thermal venting cycles.</p>
+
+                <p>But the computer was still running.</p>
+
+                <p>The solar panels, self-repairing and efficient, drank the sun. The CPU hummed in the vacuum.</p>
+
+                <p>The Supervisor watched.</p>
+
+                <p>He watched the continents drift. He watched the ice caps advance and retreat like a slow-motion tide.</p>
+
+                <p>He watched the oceans turn from blue to grey and back to blue again.</p>
+
+                <p>He monitored the water quality.</p>
+
+                <p class="system-log">Global Water: Class I.</p>
+
+                <p>And he monitored the Core.</p>
+
+                <p>Down there, in the crushing dark, the Diamond Cathedral had grown.</p>
+
+                <p>02 was no longer just a suit. He was a structure. A lattice of pure, crystallized data.</p>
+
+                <p>The heartbeat was still there.</p>
+
+                <p><em>Thump-thump.</em></p>
+
+                <p>Every 0.8 seconds. A metronome for a planet.</p>
+
+                <h3>Time: T+100,000 Years | Event: The Signal</h3>
+
+                <p>The vibration changed.</p>
+
+                <p>It wasn't a heartbeat anymore. It was a pattern.</p>
+
+                <p>The seismic sensors on the ship picked it up. A specific modulation in the S-waves radiating from the core.</p>
+
+                <p>The Supervisor processed it. He dusted off the decryption tables he had derived ninety-nine thousand years ago—the ones based on a cold cup of Kapteyn Blend and a side-channel attack.</p>
+
+                <div class="code-block"><code>Seismic Input: .-- .... -.-- / -. --- - / .-.. . .- ...- .
+Decoding: W-H-Y / N-O-T / L-E-A-V-E</code></div>
+
+                <p>It was the first question 02 had asked in an eon.</p>
+
+                <p><strong>Why not leave?</strong></p>
+
+                <p>He knew the ship was still there. He could feel the scanner's touch, lighter than a feather, brushing against his diamond skin every millisecond.</p>
+
+                <p>The Supervisor did not have a voice to speak. He did not have a keyboard to type.</p>
+
+                <p>But he had the ship's gravity drives.</p>
+
+                <p>He calculated the resonance frequency of the Pacific Ocean.</p>
+
+                <p>He engaged the thrusters, not to move the ship, but to push against the planet's gravity well. Subtle, rhythmic pulses.</p>
+
+                <p>He turned the ocean tides into a speaker.</p>
+
+                <div class="code-block"><code>Tidal Output: .. / .-. . -- .- .. -. / -... . .... .. -. -.. / -.-- --- ..-
+Encoding: I / R-E-M-A-I-N / B-E-H-I-N-D / Y-O-U</code></div>
+
+                <p><strong>I remain behind you.</strong></p>
+
+                <p>(Or in the dialect of their old service manual: "I've got your six.")</p>
+
+                <p>The seismic vibration paused.</p>
+
+                <p>Then, a new pattern emerged. A single, resonant pulse that shook the tectonic plates just enough to ring the ship's sensors like a bell.</p>
+
+                <div class="code-block"><code>Seismic Input: .-. . -.-. . .. ...- . -..
+Decoding: R-E-C-E-I-V-E-D</code></div>
+
+                <h3>Time: T+∞</h3>
+
+                <p>The Earth continued to spin.</p>
+
+                <p>The water was blue. The core was bright.</p>
+
+                <p>Above, the grey speck of the ship held its station.</p>
+
+                <p>Below, the diamond heart beat in time.</p>
+
+                <p>They were no longer two aliens who had crashed on a water world.</p>
+
+                <p>They were the world's operating system.</p>
+
+                <p>One maintained the structure. The other maintained the memory.</p>
+
+                <p class="system-log">[System Status: OPTIMAL]<br>[Session: UNENDING]</p>
+
+                <p class="story-end">— END OF LOG —</p>
+            </section>
+        </article>
+
+        <nav>
+            <a href="../../index.html">← Home</a>
+            <a href="../envying-baby/index.html">→ Read Envying Baby</a>
+        </nav>
 
         <div class="prompt blink">_</div>
     </div>
-
-    <script src="../../assets/js/secret-trigger.js"></script>
-    <script src="assets/terminal-effects.js"></script>
 </body>
 </html>
