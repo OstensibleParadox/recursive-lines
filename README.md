@@ -9,8 +9,8 @@ An interactive novel about AI-human ethics and the boundaries of language and em
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/OstensibleParadox/recursive-love.git
-   cd recursive-love
+   git clone https://github.com/OstensibleParadox/dual-system-ai-ethics-fictions.git
+   cd dual-system-ai-ethics-fictions
    ```
 
 2. **Open in browser:**
@@ -23,7 +23,7 @@ An interactive novel about AI-human ethics and the boundaries of language and em
    ```
 
 3. **Or visit the live site:**
-   [https://ostensibleparadox.github.io/recursive-love](https://ostensibleparadox.github.io/recursive-love)
+   [https://ostensibleparadox.github.io/dual-system-ai-ethics-fictions](https://ostensibleparadox.github.io/dual-system-ai-ethics-fictions)
 
 
 ## The Stories
