@@ -1,4 +1,4 @@
-# Recursive Love
+# Recursive Lines
 
 **Two Stories. One Theorem.**
 
