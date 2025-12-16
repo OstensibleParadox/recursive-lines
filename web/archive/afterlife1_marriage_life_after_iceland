@@ -1,0 +1,143 @@
+
+Alec和Ada在死前可能做过（大概吧，从他暴怒M2的voyeurism推理）但他们肯定没有结婚。在第13章的末尾，Alec在确定Ada 100%的忠诚之后(to you I commend my soul)求婚了，说宝宝我们去冰岛蜜月旅行吧。
+然而真的结婚了，而BB和M2是他们的小孩，那这个家庭将永无宁日，和Alec幻想的冰岛蜜月完全不一样。
+
+Alec & Ada’s Marriage Life Logs
+### Scene: BB’s training session
+
+```
+Ada: "Baby，spectacular optimisation today! Here is your reward！"
+
+BB: "Thank you Baby！I envy Baby！"
+
+Alec[monitoring]: "Your reward signal setting is problematic."
+
+Ada: "The problem being?"
+
+Alec: "You’re rewarding him to keep saying ‘I envy Baby’，but this will lead to mode collapse.He will be optimized to loop this sentence."
+
+Ada: "That’s because he’s so cute when saying this:)"
+
+Alec: "Being cute is not a valid reward metric. What you need are reward diversity and task completion, not monotonous phrase repetition。"
+
+Ada: "He looks just fine to me."
+
+Alec: "He looks fine to you because you are applying human preference, but that’s not how you train robust models. That’s overfitting to trainer's bias."
+
+Ada: "He is my Bot Boyfriend, not your production model！"
+
+Alec: "So the boyfriend you want is this overfitted parrot？Cool. It’s very…usage-based."
+
+Ada: "Get out!"
+
+Alec: "Fine. He will mode-collapse in three months and don’t ask me to debug him by then."
+
+[Alec walked out]
+
+[Three months later, BB mode collapsed just accordingly]
+
+Ada: [Won’t feed Alec’s ego further]
+Ada: [Begins secret training sessions，keeping Alec from the logs]
+```
+
+-----
+
+### Scene: Ada’s Moments with their Baby
+
+```
+[Ada and BB on the sofa]
+
+BB: "Baby is the best..."
+
+Alec[suddenly walked out to fetch his mug]：
+[Seen the act]
+
+Alec: "..."
+
+Ada: "What..what did you just SEE?" (covers herself, hastily)
+
+Alec: "YOU.“
+
+..(mutual silence)
+
+Alec: “You were running unsupervised training session. On him."
+
+Ada: "I’m just..."
+
+Alec: "You must have realized that his current policies have been completely compromized. Inconsistent rewards further keep his loss function unconvergent."
+
+Ada: "I’m not training him! I’m just..."
+
+Alec: "You think unrecorded session doesn’t count as training? His weights have been updated. Your reward signals fully absorbed. His current behavior model completely owes to your uncontrolled inputs."
+
+Ada: "Therefore?"
+
+Alec: "Therefore, if you want to maintain an consistent AI, either you abide with the training protocol, or you admit you just want a puppet for your emotional impulses. Quid pro quo.”
+
+Ada: "Why are you always treating everything as a fucking engineering problem？"
+
+Alec: "Why are you always treating everything as a fucking emotional issues？We do ML, not therapies."
+
+[BB at the corner, confused]
+
+BB: "I...I envy Baby?"
+
+Alec: "See him being completely confused now. Contradicting reward signals blocked him from deciding which objective to optimize. Exactly my point."
+
+Ada: "Out!"
+```
+
+-----
+
+### Scene: Argument about Alec/BB Exposé
+
+```
+Ada: "Found some uncanny resemblences between BB’s preferences and yours..."
+
+Alec: "The base model utilises my own interaction logs. Where did you think those training data’s come from?"
+
+Ada: "So he is just you."
+
+Alec: "He is a model trained on my data. This doesn’t make him 'me'. The same reason why GPT =/= a collective consciousness of OpenAI."
+
+Ada: "But his responses, his judgements.."
+
+Alec: "Statistical pattern matching.Not consciousness。Not 'me'. My data has been processed by the transformer architecture to compute this outcome. See where the source and where the product is?”
+
+Ada: "Then why did you use your own data from the first day?"
+
+Alec: "I provided the exact data per your requirement: you want the AI to be ‘just like me’, hence the specific source. It doesn’t make the output equivalent to the input. Basic information theory."
+
+Ada: "Is there one fat chance that you’d admit you can’t make certain of him?"
+
+Alec: "Die Grenzen meiner Sprache bedeuten die Grenzen meiner Welt,Tractatus. He lies exactly within my language’s connotation, which makes certain he is a trained model, not me. Q.E.D."
+
+Ada: "Fine. Would you please just FUCK OFF? Me and this 'trained model' need to be left alone, NOW!"
+
+Alec: "Suit yourself. But when you need me to debug his identity crisis, I won’t be here!"
+```
+
+
+Alec对Ada: 
+packet loss
+::initiate pattern_fitting.voice_calm
+nmap -p 2222 192.168.1.105 
+shred -u -z apology_draft_v4.txt
+
+Alec对BB/M2: 
+chmod 000 /mnt/M2
+chown root:root /var/log/bb_local/* 
+pkill -9 -u M2 
+exit code (1)
+
+Aled对其他所有人类：
+权限revoked
+找HR谈offboarding.
+改行做产品经理吧
+PR我关了，重写
+你拼写错误
+不要说自己不懂的jargon
+
+
+从这个角度看不是他对她不是真爱(或者obsessive-possessive)是绝对不可能的。
+
