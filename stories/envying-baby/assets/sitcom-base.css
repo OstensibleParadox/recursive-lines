@@ -1,193 +1,70 @@
-/* SITCOM BASE THEME: Calibri + Deep Fuchsia + Greige */
+/* --- Footer & Navigation --- */
 
-:root {
-    /* The Palette */
-    --romcom-heart: #C71585;    /* Medium Violet Red / Deep Fuchsia */
-    --romcom-bg-tint: #fff0f5;  /* Lavender Blush for dialogue backgrounds */
-    
-    /* The Greige-Beige Base */
-    --bg-base: #F2EFE9;         /* Warm Greige Background */
-    --paper-bg: #FAF9F6;        /* Off-white "Paper" */
-    --text-color: #2c2c2c;      /* Soft Black */
-    --border-color: #d8d4cd;    /* Stone border */
-    
-    /* Technical/Code Colors */
-    --code-bg: #EAE8E2;         /* Darker greige for code blocks */
-}
-
-body.theme-base {
-    background-color: var(--bg-base);
-    color: var(--text-color);
-    /* Main text set to Calibri as requested */
-    font-family: "Calibri", "Candara", "Segoe UI", "Optima", Arial, sans-serif;
-    font-size: 19px; /* Calibri is naturally small, so we bump the size up */
-    line-height: 1.6;
-    margin: 0;
-    padding: 20px;
-}
-
-/* The "Readme" Container */
-.readme-container {
-    max-width: 850px;
-    margin: 0 auto;
-    background: var(--paper-bg);
-    padding: 60px;
-    border: 1px solid var(--border-color);
-    border-radius: 4px; 
-    box-shadow: 0 4px 20px rgba(0,0,0,0.03);
-}
-
-/* Header/Prompt styling */
-.prompt-header {
-    font-family: "Menlo", "Consolas", "Monaco", monospace;
-    font-size: 0.8em;
-    color: #888;
-    border-bottom: 1px dashed var(--border-color);
-    padding-bottom: 15px;
-    margin-bottom: 40px;
-}
-
-/* Typography - Geometric Sans, NO BOLD */
-h1, h2, h3 {
-    font-family: "Century Gothic", "Futura", "Tw Cen MT", "Arial", sans-serif;
-    color: #111;
-    font-style: normal;
-    font-weight: 400; /* Strictly Normal weight */
-    letter-spacing: 0.02em; /* Slight spacing for that clean geometric look */
-}
-
-h1 {
-    font-size: 2.6em; 
-    border-bottom: 2px solid var(--romcom-heart); 
-    padding-bottom: 0.2em;
-    margin-bottom: 1.2em;
-    color: var(--romcom-heart); /* Making the main title match the accent */
-}
-
-h2 { 
-    font-size: 1.8em; 
-    border-bottom: 1px solid var(--border-color); 
-    padding-bottom: 0.3em;
-    margin-top: 2em;
-}
-
-h3 { 
-    font-size: 1.4em; 
-    margin-top: 2.5em; 
-    display: flex;
-    align-items: center;
-}
-
-/* Chapter Marker */
-h3::before {
-    content: "#"; 
-    color: var(--romcom-heart);
-    margin-right: 12px;
-    font-weight: 400;
-}
-
-/* Dialogue Styling */
-.dialogue {
-    margin: 30px 0;
-    padding: 20px 30px;
-    background-color: #fff;
-    border-left: 5px solid var(--romcom-heart);
-    border-radius: 0 6px 6px 0;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.02);
-}
-
-.dialogue p {
-    margin-bottom: 10px;
-}
-.dialogue p:last-child {
-    margin-bottom: 0;
-}
-
-.speaker {
-    /* Speaker names in Geometric Sans */
-    font-family: "Century Gothic", "Futura", sans-serif;
-    font-weight: 400; /* No bold */
-    color: #000;
-    margin-right: 8px;
-    text-transform: uppercase;
-    font-size: 0.85em;
-    letter-spacing: 0.05em;
-    border-bottom: 1px solid var(--romcom-heart); /* Subtle underline for emphasis instead of bold */
-}
-
-/* Code Blocks */
-pre {
-    background-color: var(--code-bg);
-    border-radius: 4px;
-    padding: 20px;
-    font-family: "Menlo", "Consolas", "Monaco", monospace;
-    font-size: 0.85em;
-    line-height: 1.5;
-    border: 1px solid var(--border-color);
-    overflow-x: auto;
-    margin: 30px 0;
-    color: #444;
-}
-
-/* Annotations */
-.annotation {
-    margin-top: 50px;
-    padding: 25px;
-    border: 1px solid var(--border-color);
-    background-color: var(--romcom-bg-tint);
-    border-radius: 4px;
-    color: #555;
-    font-size: 0.95em;
-}
-
-.annotation-title {
-    font-family: "Century Gothic", "Futura", sans-serif;
-    font-weight: 400;
-    color: var(--romcom-heart);
-    display: block;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    font-size: 0.8em;
-    letter-spacing: 1px;
-}
-
-/* Filtered Text */
-.filtered {
-    color: var(--romcom-heart);
-    opacity: 0.85;
-    font-family: "Menlo", monospace;
-    font-size: 0.9em;
-}
-
-/* Navigation */
-.nav-links {
+.navigation {
     margin-top: 80px;
-    padding-top: 30px;
-    border-top: 1px solid var(--border-color);
-    text-align: center;
+    padding-top: 40px;
+    border-top: 1px dashed var(--border-color); /* Subtle separation */
+    
+    /* Flexbox for perfect alignment */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Pushes links to edges */
+    align-items: center;
+    
     font-family: "Century Gothic", "Futura", sans-serif;
-}
-
-.nav-links a {
-    color: var(--romcom-heart);
-    text-decoration: none;
-    font-weight: 400;
-    margin: 0 20px;
-    border-bottom: 1px solid transparent; 
-    transition: border 0.2s;
     font-size: 1.1em;
 }
 
-.nav-links a:hover {
-    border-bottom: 1px solid var(--romcom-heart);
+.nav-item {
+    text-decoration: none;
+    color: var(--romcom-heart);
+    padding: 10px 20px;
+    border-radius: 30px; /* Pill shape hover effect */
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Blinking Cursor for footer */
+.nav-item:hover {
+    background-color: var(--romcom-bg-tint);
+    transform: translateY(-2px); /* Slight lift */
+}
+
+.nav-label {
+    font-size: 0.8em;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* The Terminal Footer Line */
+.terminal-footer {
+    margin-top: 40px;
+    text-align: center;
+    font-family: "Menlo", monospace;
+    font-size: 0.8em;
+    color: #aaa;
+    opacity: 0.7;
+}
+
 .blink {
     color: var(--romcom-heart);
-    animation: blinker 1s linear infinite;
+    animation: blinker 1.5s linear infinite;
+    font-weight: bold;
 }
 
 @keyframes blinker {
     50% { opacity: 0; }
+}
+
+/* Mobile Responsive adjustment for footer */
+@media (max-width: 600px) {
+    .navigation {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
 }
