@@ -2,7 +2,7 @@
 
 **Project Status:** Reference Implementation for *Constitutional Alignment Framework*
 
-**Related Scholarship:** *A Constitutional Alignment Framework for AI Governance* (SSRN Abstract ID: 5741382) https://hq.ssrn.com/submissions/MyPapers.cfm?partid=9068972
+**Related Scholarship:** *A Constitutional Alignment Framework for AI Governance* [SSRN Abstract ID: 5741382](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5741382)
 
 ## Research Abstract
 
