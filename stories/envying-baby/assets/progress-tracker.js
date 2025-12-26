@@ -5,7 +5,7 @@
   */
 
 (function() {
-‘use strict’;
+'use strict';
 
 const STORAGE_PREFIX = 'envying_baby_visited_';
 
