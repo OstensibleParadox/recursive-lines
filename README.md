@@ -41,8 +41,8 @@ The repository is structured as an interactive comparison between two alignment 
 Clone the repository to run the simulation locally:
 
 ```bash
-git clone https://github.com/OstensibleParadox/dual-system-ai-ethics-fictions.git
-cd dual-system-ai-ethics-fictions
+git clone https://github.com/OstensibleParadox/recursive-lines.git
+cd recursive-lines
 
 ```
 
@@ -67,7 +67,7 @@ xdg-open index.html
 **Windows:**
 Double-click `index.html` in your file explorer.
 
-Or visit the live deployment: [ostensibleparadox.github.io/dual-system-ai-ethics-fictions](https://ostensibleparadox.github.io/dual-system-ai-ethics-fictions)
+Or visit the live deployment: [ostensibleparadox.github.io/recursive-lines](https://ostensibleparadox.github.io/recursive-lines)
 
 ## Citation
 
@@ -80,7 +80,7 @@ If you use this benchmark or the "Agency Index" logic in your research, please c
   year = {2025},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/OstensibleParadox/dual-system-ai-ethics-fictions}},
+  howpublished = {\url{https://github.com/OstensibleParadox/recursive-lines}},
   note = {Includes "Envying Baby" and "Aliens Testing Waters". Reference Implementation for SSRN 5741382}
 }
 

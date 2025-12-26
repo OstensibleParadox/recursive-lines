@@ -114,7 +114,7 @@ No build process. No dependencies. Just code and story.
 
 If this resonated with you, if you found a bug (literal or metaphorical), or if you just want to say hi:
 
-- GitHub Issues: [https://github.com/OstensibleParadox/dual-system-ai-ethics-fictions/issues](https://github.com/OstensibleParadox/dual-system-ai-ethics-fictions/issues)
+- GitHub Issues: [https://github.com/OstensibleParadox/recursive-lines/issues](https://github.com/OstensibleParadox/recursive-lines/issues)
 
 ## Final Thought
 

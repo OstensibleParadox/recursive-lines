@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ostensibleparadox.github.io/dual-system-ai-ethics-fictions/sitemap.xml
+Sitemap: https://ostensibleparadox.github.io/recursive-lines/sitemap.xml
