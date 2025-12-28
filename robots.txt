@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://ostensibleparadox.github.io/recursive-lines/sitemap.xml
