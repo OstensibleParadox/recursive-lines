@@ -1,6 +1,6 @@
 # Translations
 
-Want to translate **Recursive Love** to another language? Here's how.
+Want to translate **Recursive Lines** to another language? Here's how.
 
 ## Available Translations
 

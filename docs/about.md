@@ -1,4 +1,4 @@
-# About Recursive Love
+# About Recursive Lines
 
 ## Why I Wrote This
 

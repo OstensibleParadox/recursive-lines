@@ -1,6 +1,6 @@
 # Reading Guide
 
-How to approach **Recursive Love** for the best experience.
+How to approach **Recursive Lines** for the best experience.
 
 ## First Time Reading
 

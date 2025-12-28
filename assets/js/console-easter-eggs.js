@@ -8,7 +8,7 @@
 
     // Terminal-style welcome message
     console.log('%c╔══════════════════════════════════════════╗', 'color: #00ff00');
-    console.log('%c║  RECURSIVE LOVE - Terminal v1.0          ║', 'color: #00ff00');
+    console.log('%c║  RECURSIVE LINES - Terminal v1.0         ║', 'color: #00ff00');
     console.log('%c║  Two stories. One theorem.               ║', 'color: #00ff00');
     console.log('%c╚══════════════════════════════════════════╝', 'color: #00ff00');
     console.log('%c> Curious? Keep exploring...', 'color: #00aaff');

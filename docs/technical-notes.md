@@ -1,6 +1,6 @@
 # Technical Notes
 
-Real computer science explanations for the metaphors used in Recursive Love.
+Real computer science explanations for the metaphors used in Recursive Lines.
 
 ## Core Concepts
 
