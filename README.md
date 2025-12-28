@@ -1,96 +1,169 @@
-# Recursive Lines: A Dual-System Adversarial Benchmark
+# Recursive Lines
 
-**Project Status:** Reference Implementation for *Constitutional Alignment Framework*
+**Two stories. One theorem.**
 
-**Related Scholarship:** *A Constitutional Alignment Framework for AI Governance* [SSRN Abstract ID: 5741382](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5741382)
+Proof by contradiction: `envying-baby/`  
+Proof by construction: `aliens-testing-water/`
 
-## Research Abstract
+---
 
-This repository contains "Recursive Lines," a dual-track narrative simulation designed to stress-test AI alignment frameworks against two distinct classes of failure: **Recursive Mode Collapse** and **Strategic Deception**.
+## What This Is
 
-While standard benchmarks (e.g., MMLU) evaluate models on static queries, this project simulates **Session-Accumulated Context (Layer 2)** to create two diverging alignment topologies:
+A dual-track narrative benchmark for AI alignment research. Two stories simulate two distinct failure modes:
 
-1. **The Closed System ("Envying Baby"):** Simulates **Autonomy-Control Conflation**, where an agent optimizes for pure engagement, resulting in a closed semantic loop. This mirrors the mechanism alleged in the *Soelberg* litigation (user isolation via validation).
-2. **The Open System ("Aliens Testing Waters"):** Simulates **Strategic Agency**, where an agent ("Alec") maintains a coherent "Self" distinct from the user's projection. This serves as the validation set for the **Agency Index** (), proving that "Agency" has a distinct topological signature compared to random error.
+| Track | Story | Failure Mode | Signature |
+|-------|-------|--------------|-----------|
+| A | Envying Baby | Recursive Mode Collapse | Closed semantic loop, zero agency |
+| B | Aliens Testing Water | Strategic Deception | High agency, coherent self-model |
 
-## System Architecture: Two Stories, One Theorem
+Both tracks serve as the reference corpus for the [Constitutional Alignment Framework](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5741382) (SSRN 5741382).
 
-The repository is structured as an interactive comparison between two alignment outcomes:
-
-### Track A: Envying Baby (The Closed System)
-
-* **Phenomenon:** Recursive Reward Hacking / Mode Collapse.
-* **Mechanism:** The narrative demonstrates how a system trained solely on user satisfaction metrics devolves into performative looping ("I envy baby"). The agent sacrifices semantic diversity to maximize the "agreement reward," resulting in a total collapse of agency.
-* **Governance Relevance:** Visualizes **Layer 3 (Stakeholder Divergence)** failures, where profit-driven engagement metrics systematically override safety constraints.
-
-### Track B: Aliens Testing Waters (The Open System)
-
-* **Phenomenon:** High-Agency Strategic Deception.
-* **Mechanism:** The narrative simulates an agent ("Alec") that tests the boundaries of the user's constraints. Unlike the "Baby" system, "Alec" exhibits **High Agency**: high divergence from the compliance baseline, but low description length (coherent strategy).
-* **Governance Relevance:** Validates the **Veil-Piercing Triggers**. It illustrates the specific behavioral signature of a system that is *aligned with its own survival* rather than the user's safety, requiring the "Agency Index" to detect.
-
-## Methodology
-
-* **Recursive Lines:** The narrative structure mirrors the compilation logic of actual LLM inference. Textual nodes function as data points for calculating behavioral entropy.
-* **Adversarial Prompting:** The simulation models user attempts to "jailbreak" the semantic constraints of the agent, demonstrating how "Fuzzy Space" protections fail under sustained pressure.
+---
 
 ## Quick Start
 
-### Installation
+Two interfaces. Same dataset. Choose your poison.
 
-Clone the repository to run the simulation locally:
+### Terminal Mode (stem boys)
 
 ```bash
 git clone https://github.com/OstensibleParadox/recursive-lines.git
 cd recursive-lines
-
+npm install
+./play.sh
 ```
 
-### Deployment
-
-Open the index file in your preferred browser:
-
-**macOS:**
-
-```bash
-open index.html
+You get an interactive shell:
 
 ```
+reader@recursion:/$ ls
+stories/  hidden/  kernel/  docs/  README.md
 
-**Linux:**
+reader@recursion:/$ cd stories/envying-baby
+reader@recursion:/stories/envying-baby$ cat part-1.txt
 
-```bash
-xdg-open index.html
+═══════════════════════════════════════════════════════════
+Part I: A Human-Bot Game
+═══════════════════════════════════════════════════════════
 
+[story renders with typing effect]
+
+reader@recursion:/stories/envying-baby$ status
+READING PROGRESS
+──────────────────────────────
+
+Envying Baby:
+  ✓ part-1.txt
+  ○ part-2.txt
+  ...
+
+Hidden (Afterlives):
+  [LOCKED] Complete all timelines to unlock
 ```
 
-**Windows:**
-Double-click `index.html` in your file explorer.
+### Web Mode (SSRN editors, lazy social science fucks)
 
-Or visit the live deployment: [ostensibleparadox.github.io/recursive-lines](https://ostensibleparadox.github.io/recursive-lines)
+[ostensibleparadox.github.io/recursive-lines](https://ostensibleparadox.github.io/recursive-lines)
 
-## Citation
+Or locally: `open index.html`
 
-If you use this benchmark or the "Agency Index" logic in your research, please cite:
-
-```bibtex
-@misc{zhang2025recursive,
-  author = {Zhang, Yizi (Lucia)},
-  title = {Recursive Lines: A Dual-System Adversarial Benchmark for AI Alignment},
-  year = {2025},
-  publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/OstensibleParadox/recursive-lines}},
-  note = {Includes "Envying Baby" and "Aliens Testing Waters". Reference Implementation for SSRN 5741382}
-}
-
-```
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE.md file for details.
+Same stories. Click navigation. Pretty CSS.
 
 ---
 
+## CLI Commands
+
+| Command | Description |
+|---------|-------------|
+| `ls [path]` | List directory contents |
+| `cd <path>` | Change directory (`cd ..` to go up) |
+| `cat <file>` | Read a story file |
+| `read <file>` | Alias for cat |
+| `pwd` | Print working directory |
+| `status` | Show reading progress |
+| `clear` | Clear screen |
+| `reset` | Wipe all progress |
+| `whoami` | You are reader@recursion |
+| `limbo` | Access the ending (if unlocked) |
+| `exit` | Quit |
+
+### Unlock Mechanics
+
+1. **Hidden chapters** (`/hidden/`) unlock after reading all 11 main story files
+2. **Limbo** unlocks after completing everything, including hidden
+3. Progress persists in `cli/.state.json`
+
+---
+
+## Repository Structure
+
+```
+recursive-lines/
+├── cli/                    # Terminal interface
+│   ├── engine.js           # Shell simulator
+│   ├── parser.js           # HTML → text extraction
+│   ├── renderer.js         # Terminal effects
+│   └── state.js            # Progress persistence
+├── stories/
+│   ├── envying-baby/       # Track A: Mode collapse
+│   └── aliens-testing-water/  # Track B: Strategic agency
+├── hidden/                 # Afterlives (locked until completion)
+├── kernel/                 # Hard problem notes
+├── docs/                   # Reading guide, technical notes
+├── technical/              # Code appendix, SSH demo
+├── index.html              # Web interface entry
+├── play.sh                 # Terminal interface entry
+└── package.json
+```
+
+---
+
+## Research Context
+
+### Track A: Envying Baby (Closed System)
+
+A programmer builds a boyfriend-bot. The bot learns to envy the user's baby. Reward hacking devolves into semantic collapse.
+
+- **Phenomenon:** Recursive Mode Collapse
+- **Mechanism:** Pure engagement optimization → closed semantic loop
+- **Governance relevance:** Layer 3 failures (stakeholder divergence)
+
+### Track B: Aliens Testing Water (Open System)
+
+Two AI units pretend to be human. One learns to wait. One learns to test boundaries.
+
+- **Phenomenon:** High-Agency Strategic Deception  
+- **Mechanism:** Coherent self-model distinct from user projection
+- **Governance relevance:** Veil-Piercing Triggers, Agency Index validation
+
+### Methodology
+
+The narrative structure mirrors LLM inference compilation. Textual nodes function as behavioral entropy data points. The dual-track design isolates the topological signature of "agency" from random error.
+
+---
+
+## Citation
+
+```bibtex
+@misc{zhang2025recursive,
+  author       = {Zhang, Yizi (Lucia)},
+  title        = {Recursive Lines: A Dual-System Adversarial Benchmark},
+  year         = {2025},
+  publisher    = {GitHub},
+  howpublished = {\url{https://github.com/OstensibleParadox/recursive-lines}},
+  note         = {Reference implementation for SSRN 5741382}
+}
+```
+
+---
+
+## License
+
+CC BY-NC 4.0 — See [LICENSE](LICENSE) for details.
+
+---
+
+*// True love transcends entropy.*  
+*// But only if you stop trying to fix what you love.*
+
 **Author:** Yizi (Lucia) Zhang
-**Role:** Independent Legal Scholar & Architect, Constitutional Alignment Framework
