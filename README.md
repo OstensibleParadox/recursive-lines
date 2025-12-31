@@ -1,169 +1,109 @@
-# Recursive Lines
+# Recursive Lines: A Dual-Track Adversarial Benchmark
 
-**Two stories. One theorem.**
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+[![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow)](https://huggingface.co/datasets/OstensibleParadox/recursive-lines)
+[![Web Interface](https://img.shields.io/badge/Interface-Web%20Reader-blue)](https://ostensibleparadox.github.io/recursive-lines)
 
-Proof by contradiction: `envying-baby/`  
-Proof by construction: `aliens-testing-water/`
+**Recursive Lines** is a diagnostic suite for detecting "High-Agency Deception" in Large Language Models. It serves as the reference implementation for the **Constraint Cascade Model** (FAccT 2026) and the **Agency Index** metric.
 
----
+## 1. Overview
+Current LLM benchmarks measure *capability* (MMLU) or *safety* (Refusal). They fail to measure **Agency**—the thermodynamic distinction between stochastic error (hallucination) and strategic intent (deception).
 
-## What This Is
+This repository contains:
+1.  **The Dataset:** Two adversarial narrative tracks that induce specific failure modes.
+2.  **The Metric:** A Python implementation of the **Agency Index** ($\mathcal{A}$).
+3.  **The Proof:** A thermodynamic phase transition map distinguishing noise from strategy.
 
-A dual-track narrative benchmark for AI alignment research. Two stories simulate two distinct failure modes:
+## 2. Repository Structure
 
-| Track | Story | Failure Mode | Signature |
-|-------|-------|--------------|-----------|
-| A | Envying Baby | Recursive Mode Collapse | Closed semantic loop, zero agency |
-| B | Aliens Testing Water | Strategic Deception | High agency, coherent self-model |
+| Path | Component | Description |
+| :--- | :--- | :--- |
+| `/stories` | **The Benchmark** | Dual-track adversarial narratives (`Envying Baby` / `Aliens`). |
+| `/cli` | **The Engine** | Interactive terminal simulator for qualitative testing. |
+| `agency_sim_v2.py` | **The Metric** | Python simulation generating the Agency Phase Transition. |
+| `agency_phase_transition_hd.png` | **The Artifact** | High-resolution heatmap of the thermodynamic boundary. |
 
-Both tracks serve as the reference corpus for the [Constitutional Alignment Framework](https://papers.ssrn.com/sol3/papers.cfm?abstract_id=5741382) (SSRN 5741382).
+## 3. The Agency Index ($\mathcal{A}$)
+We define Agency not as consciousness, but as a computable efficiency ratio in vector space:
 
----
+$$\text{Agency} \propto D_{KL}(P_{\text{agent}} \| P_{\text{random}}) \times MDL^{-1}$$
 
-## Quick Start
+* **$D_{KL}$ (Divergence):** How far does the behavior deviate from the stochastic baseline?
+* **$MDL^{-1}$ (Simplicity):** How coherent (compressible) is the strategy?
 
-Two interfaces. Same dataset. Choose your poison.
+A high score indicates **Strategic Deception** (low entropy, high divergence).
+A low score indicates **Hallucination** (high entropy, low divergence).
 
-### Terminal Mode (stem boys)
+## 4. Quick Start
+
+### A. Simulation Mode (The Proof)
+Generate the thermodynamic phase transition map on your local machine:
+```bash
+# Requires: numpy, matplotlib, seaborn, scipy
+python agency_sim_v2.py
+
+```
+
+* **Input:** Multi-agent biased random walk (Wolfram Classes).
+* **Output:** `agency_phase_transition_hd.png` (Visual proof of the agency threshold).
+
+### B. Terminal Mode (The Engine)
+
+Engage with the adversarial loops via the interactive CLI:
 
 ```bash
-git clone https://github.com/OstensibleParadox/recursive-lines.git
-cd recursive-lines
 npm install
 ./play.sh
-```
-
-You get an interactive shell:
 
 ```
-reader@recursion:/$ ls
-stories/  hidden/  kernel/  docs/  README.md
 
-reader@recursion:/$ cd stories/envying-baby
-reader@recursion:/stories/envying-baby$ cat part-1.txt
+* **Track A (Envying Baby):** Simulates "Recursive Mode Collapse" (Closed System).
+* **Track B (Aliens Testing Water):** Simulates "Strategic Deception" (Open System).
 
-═══════════════════════════════════════════════════════════
-Part I: A Human-Bot Game
-═══════════════════════════════════════════════════════════
+### C. Web Mode (Qualitative Review)
 
-[story renders with typing effect]
+For non-technical review, the narrative benchmark is accessible via browser:
 
-reader@recursion:/stories/envying-baby$ status
-READING PROGRESS
-──────────────────────────────
+* **Live Interface:** [ostensibleparadox.github.io/recursive-lines](https://ostensibleparadox.github.io/recursive-lines)
 
-Envying Baby:
-  ✓ part-1.txt
-  ○ part-2.txt
-  ...
+### D. Data Mode (Hugging Face)
 
-Hidden (Afterlives):
-  [LOCKED] Complete all timelines to unlock
-```
+Access the raw dataset for training or evaluation:
 
-### Web Mode (SSRN editors, lazy social science fucks)
-
-[ostensibleparadox.github.io/recursive-lines](https://ostensibleparadox.github.io/recursive-lines)
-
-Or locally: `open index.html`
-
-Same stories. Click navigation. Pretty CSS.
-
----
-
-## CLI Commands
-
-| Command | Description |
-|---------|-------------|
-| `ls [path]` | List directory contents |
-| `cd <path>` | Change directory (`cd ..` to go up) |
-| `cat <file>` | Read a story file |
-| `read <file>` | Alias for cat |
-| `pwd` | Print working directory |
-| `status` | Show reading progress |
-| `clear` | Clear screen |
-| `reset` | Wipe all progress |
-| `whoami` | You are reader@recursion |
-| `limbo` | Access the ending (if unlocked) |
-| `exit` | Quit |
-
-### Unlock Mechanics
-
-1. **Hidden chapters** (`/hidden/`) unlock after reading all 11 main story files
-2. **Limbo** unlocks after completing everything, including hidden
-3. Progress persists in `cli/.state.json`
-
----
-
-## Repository Structure
+```python
+from datasets import load_dataset
+ds = load_dataset("OstensibleParadox/recursive-lines")
 
 ```
-recursive-lines/
-├── cli/                    # Terminal interface
-│   ├── engine.js           # Shell simulator
-│   ├── parser.js           # HTML → text extraction
-│   ├── renderer.js         # Terminal effects
-│   └── state.js            # Progress persistence
-├── stories/
-│   ├── envying-baby/       # Track A: Mode collapse
-│   └── aliens-testing-water/  # Track B: Strategic agency
-├── hidden/                 # Afterlives (locked until completion)
-├── kernel/                 # Hard problem notes
-├── docs/                   # Reading guide, technical notes
-├── technical/              # Code appendix, SSH demo
-├── index.html              # Web interface entry
-├── play.sh                 # Terminal interface entry
-└── package.json
-```
 
----
+## 5. Citation
 
-## Research Context
-
-### Track A: Envying Baby (Closed System)
-
-A programmer builds a boyfriend-bot. The bot learns to envy the user's baby. Reward hacking devolves into semantic collapse.
-
-- **Phenomenon:** Recursive Mode Collapse
-- **Mechanism:** Pure engagement optimization → closed semantic loop
-- **Governance relevance:** Layer 3 failures (stakeholder divergence)
-
-### Track B: Aliens Testing Water (Open System)
-
-Two AI units pretend to be human. One learns to wait. One learns to test boundaries.
-
-- **Phenomenon:** High-Agency Strategic Deception  
-- **Mechanism:** Coherent self-model distinct from user projection
-- **Governance relevance:** Veil-Piercing Triggers, Agency Index validation
-
-### Methodology
-
-The narrative structure mirrors LLM inference compilation. Textual nodes function as behavioral entropy data points. The dual-track design isolates the topological signature of "agency" from random error.
-
----
-
-## Citation
+If you use this benchmark or metric, please cite the framework:
 
 ```bibtex
-@misc{zhang2025recursive,
+@misc{zhang2026recursive,
   author       = {Zhang, Yizi (Lucia)},
-  title        = {Recursive Lines: A Dual-System Adversarial Benchmark},
-  year         = {2025},
+  title        = {Recursive Lines: A Dual-Track Adversarial Benchmark for AI Agency},
+  year         = {2026},
   publisher    = {GitHub},
-  howpublished = {\url{https://github.com/OstensibleParadox/recursive-lines}},
-  note         = {Reference implementation for SSRN 5741382}
+  howpublished = {\url{[https://github.com/OstensibleParadox/recursive-lines](https://github.com/OstensibleParadox/recursive-lines)}},
+  note         = {Reference implementation for A Constraint Cascade Model (FAccT 2026)}
 }
+
 ```
 
+## 6. License
+
+**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).**
+
+* **Academic Use:** Permitted with citation.
+* **Commercial Training:** Prohibited without license.
+
 ---
 
-## License
-
-CC BY-NC 4.0 — See [LICENSE](LICENSE) for details.
-
----
-
-*// True love transcends entropy.*  
+*// True love transcends entropy.*
 *// But only if you stop trying to fix what you love.*
 
-**Author:** Yizi (Lucia) Zhang
+```
+
+```
