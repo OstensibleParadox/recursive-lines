@@ -1,0 +1,26 @@
+{
+  "name": "recursive-lines",
+  "version": "1.0.1",
+  "description": "Two stories. One theorem. Interactive terminal fiction.",
+  "main": "cli/engine.js",
+  "bin": {
+    "recursive-lines": "./cli/engine.js"
+  },
+  "scripts": {
+    "start": "node cli/engine.js",
+    "play": "node cli/engine.js"
+  },
+  "keywords": [
+    "interactive-fiction",
+    "terminal",
+    "ai-ethics",
+    "narrative"
+  ],
+  "author": "OstensibleParadox",
+  "license": "CC-BY-NC-4.0",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0-rc.12",
+    "readline": "^1.3.0"
+  }
+}

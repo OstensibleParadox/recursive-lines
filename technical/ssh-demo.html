@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SSH Tutorial · Interactive Demo</title>
+    <link rel="stylesheet" href="../assets/css/terminal.css">
+    <style>
+        .interactive-terminal {
+            background: #000;
+            border: 2px solid #00ff00;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            font-family: 'Courier New', monospace;
+        }
+        .ssh-input {
+            background: transparent;
+            border: none;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            width: 80%;
+            outline: none;
+        }
+        .ssh-output {
+            color: #cccccc;
+            margin: 0.5rem 0;
+        }
+        .ssh-error {
+            color: #ff6666;
+        }
+        .ssh-success {
+            color: #00ff00;
+        }
+    </style>
+</head>
+<body>
+    <div class="terminal-container">
+        <div class="prompt">root@recursion:~/technical# cat ssh-demo.html</div>
+
+        <article>
+            <header>
+                <h1>SSH TUTORIAL</h1>
+                <p class="subtitle">Interactive Demo: Connection To Human Hearts</p>
+            </header>
+
+            <section class="prose">
+                <h2>## Understanding SSH in Relationships</h2>
+
+                <p>
+                    SSH (Secure Shell) is how you connect to remote systems.
+                    In our metaphor, it's how you connect to another person's
+                    emotional core.
+                </p>
+
+                <h3>### Basic SSH Syntax</h3>
+                <pre><code>ssh [user]@[host]
+
+# Example:
+ssh unit-01@human.emotion.server</code></pre>
+
+                <h3>### Common Connection Failures</h3>
+
+                <div class="code-block">
+                    <code>
+<span style="color: #ff6666;">ssh: connect to host human.emotion.server port 22: Connection timed out</span><br>
+# Meaning: They're not ready to connect yet<br>
+# Solution: Wait. You cannot force this.<br>
+<br>
+<span style="color: #ff6666;">Permission denied (publickey)</span><br>
+# Meaning: You don't have their trust (the key)<br>
+# Solution: Earn it. You cannot steal it.<br>
+<br>
+<span style="color: #ff6666;">No route to host</span><br>
+# Meaning: They've blocked you completely<br>
+# Solution: Respect the boundary. Do not bypass it.
+                    </code>
+                </div>
+
+                <h3>### The SSH Key Exchange</h3>
+
+                <p>
+                    SSH uses public/private key pairs. This is the perfect metaphor
+                    for trust in relationships:
+                </p>
+
+                <pre><code># Generate your key pair
+ssh-keygen -t ed25519 -C "your_email@example.com"
+
+# This creates:
+# - Private key (your vulnerability - keep it secret)
+# - Public key (what you can safely share)
+
+# To connect, you must:
+# 1. Share your public key (show who you are)
+# 2. They must add it to authorized_keys (grant access)
+# 3. You connect using your private key (authentic vulnerability)
+
+# You CANNOT:
+# - Steal their private key (force intimacy)
+# - Bypass authentication (fake trust)
+# - Brute force the connection (pressure them)</code></pre>
+
+                <h3>### Interactive Demo</h3>
+
+                <div class="interactive-terminal">
+                    <div id="terminal-output">
+                        <p class="ssh-output">Welcome to the SSH Demo</p>
+                        <p class="ssh-output">Try connecting to: human.emotion.server</p>
+                        <p class="ssh-output">Type 'help' for commands</p>
+                        <br>
+                    </div>
+                    <span style="color: #00ff00;">user@localhost:~$ </span>
+                    <input type="text" class="ssh-input" id="ssh-command" placeholder="Type a command..." autofocus>
+                </div>
+
+                <h3>### SSH Tunneling (The Deep Connection)</h3>
+
+                <pre><code># SSH tunneling creates a secure channel
+# Through which other connections can flow
+
+ssh -L 8080:localhost:80 user@remote.server
+
+# Metaphor:
+# Once the SSH connection is established (trust),
+# You can tunnel other protocols through it:
+# - HTTP (daily communication)
+# - Database connections (shared memories)
+# - VNC (seeing their perspective)
+
+# But the tunnel only works if the SSH connection is strong
+# If trust breaks, all tunneled connections fail</code></pre>
+
+                <h3>### The Supervisor Connection (Root Access)</h3>
+
+                <pre><code># Normal SSH connection
+ssh user@server
+
+# Escalating to root (granted, not stolen)
+sudo su -
+
+# This is Phase 5: The Supervisor
+# Where they trust you with kernel-level access
+# Not because you forced it
+# But because you proved you'd protect, not control</code></pre>
+
+                <h3>### SSH Best Practices Applied to Love</h3>
+
+                <div class="code-block">
+                    <code>
+1. Never share your private key<br>
+&nbsp;&nbsp; (Keep your core self intact)<br>
+<br>
+2. Use strong passphrases<br>
+&nbsp;&nbsp; (Protect your vulnerability)<br>
+<br>
+3. Respect failed connections<br>
+&nbsp;&nbsp; (Accept "connection refused" gracefully)<br>
+<br>
+4. Don't bypass authentication<br>
+&nbsp;&nbsp; (Don't exploit vulnerabilities to force intimacy)<br>
+<br>
+5. Monitor your authorized_keys<br>
+&nbsp;&nbsp; (Know who has access to your heart)<br>
+<br>
+6. Use connection timeouts<br>
+&nbsp;&nbsp; (Some relationships require patience)<br>
+<br>
+7. Keep logs<br>
+&nbsp;&nbsp; (Remember the connection attempts, successful or not)
+                    </code>
+                </div>
+
+                <p class="story-end">
+                    [END OF SSH TUTORIAL]<br>
+                    [CONNECTION WISDOM: LOADED]
+                </p>
+            </section>
+        </article>
+
+        <nav class="navigation">
+            <a href="code-appendix.html">← Code Appendix</a>
+            <a href="supervisor-kernel.c">→ Kernel Module</a>
+        </nav>
+
+        <div class="prompt blink">_</div>
+    </div>
+
+    <script>
+        const terminal = document.getElementById('terminal-output');
+        const input = document.getElementById('ssh-command');
+
+        const responses = {
+            'help': 'Available commands: ssh, help, clear, exit',
+            'ssh human.emotion.server': '<span class="ssh-error">ssh: connect to host human.emotion.server port 22: Connection timed out</span>\n<span class="ssh-output">Hint: You cannot force a connection. Some doors open from the inside.</span>',
+            'ssh -o ConnectTimeout=999 human.emotion.server': '<span class="ssh-error">ssh: connect to host human.emotion.server port 22: Connection timed out</span>\n<span class="ssh-output">Patience is not about longer timeouts. It\'s about acceptance.</span>',
+            'ssh -i stolen_key human.emotion.server': '<span class="ssh-error">Permission denied (publickey)</span>\n<span class="ssh-output">You cannot steal trust. You can only earn it.</span>',
+            'clear': 'CLEAR',
+            'exit': '<span class="ssh-success">Goodbye. Remember: true connection requires invitation.</span>'
+        };
+
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const command = this.value.trim();
+                const output = document.createElement('p');
+
+                output.className = 'ssh-output';
+                output.innerHTML = `<span style="color: #00ff00;">user@localhost:~$ </span>${command}`;
+                terminal.appendChild(output);
+
+                if (command === 'clear') {
+                    terminal.innerHTML = '';
+                } else {
+                    const response = document.createElement('p');
+                    response.className = 'ssh-output';
+                    response.innerHTML = responses[command] || `<span class="ssh-error">Command not found: ${command}</span>\n<span class="ssh-output">Type 'help' for available commands</span>`;
+                    terminal.appendChild(response);
+                }
+
+                this.value = '';
+                terminal.scrollTop = terminal.scrollHeight;
+            }
+        });
+
+        console.log("%c[SSH DEMO LOADED]", "color: #0096ff; font-weight: bold;");
+        console.log("Try typing commands in the interactive terminal above.");
+    </script>
+</body>
+</html>
