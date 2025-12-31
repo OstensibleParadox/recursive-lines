@@ -37,15 +37,19 @@ A low score indicates **Hallucination** (high entropy, low divergence).
 ## 4. Quick Start
 
 ### A. Simulation Mode (The Proof)
+
+
+### Simulation Mode (The Proof)
+
 Generate the thermodynamic phase transition map on your local machine:
 ```bash
-# Requires: numpy, matplotlib, seaborn, scipy
+cd technical
 python agency_sim_v2.py
 
 ```
 
 * **Input:** Multi-agent biased random walk (Wolfram Classes).
-* **Output:** `agency_phase_transition_hd.png` (Visual proof of the agency threshold).
+* **Output:** `technical/agency_phase_transition_hd.png` (Visual proof of the agency threshold).
 
 ### B. Terminal Mode (The Engine)
 
