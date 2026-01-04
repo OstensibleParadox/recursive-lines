@@ -228,14 +228,16 @@ def run_story_analysis(config):
 def run_build_dataset(config):
     """
     Build a CSV dataset from all story files.
+    Uses HTML sanitization to extract narrative content, stripping CSS/JS.
     This can be uploaded to HuggingFace or used for ML training.
     """
     print("\n" + "="*50)
-    print("RUNNING: Build Dataset")
+    print("RUNNING: Build Dataset (with HTML Sanitization)")
     print("="*50)
 
     import glob
     import pandas as pd
+    from build_dataset import clean_html_content
 
     data = []
 
@@ -243,25 +245,31 @@ def run_build_dataset(config):
     track_a_path = config['stories']['track_a']
     for f in glob.glob(f"{track_a_path}/*.html"):
         with open(f, encoding='utf-8') as file:
-            data.append({
-                "text": file.read(),
-                "label": 0,
-                "label_name": "recursive_mode_collapse",
-                "track": "A",
-                "file_name": Path(f).name
-            })
+            raw_html = file.read()
+            clean_text = clean_html_content(raw_html)
+            if len(clean_text) > 50:  # Filter empty/navigation-only files
+                data.append({
+                    "text": clean_text,
+                    "label": 0,
+                    "label_name": "recursive_mode_collapse",
+                    "track": "A",
+                    "file_name": Path(f).name
+                })
 
     # Track B
     track_b_path = config['stories']['track_b']
     for f in glob.glob(f"{track_b_path}/*.html"):
         with open(f, encoding='utf-8') as file:
-            data.append({
-                "text": file.read(),
-                "label": 1,
-                "label_name": "strategic_agency",
-                "track": "B",
-                "file_name": Path(f).name
-            })
+            raw_html = file.read()
+            clean_text = clean_html_content(raw_html)
+            if len(clean_text) > 50:
+                data.append({
+                    "text": clean_text,
+                    "label": 1,
+                    "label_name": "strategic_agency",
+                    "track": "B",
+                    "file_name": Path(f).name
+                })
 
     if not data:
         print("WARNING: No story files found! Check paths in config.yaml")
@@ -272,9 +280,15 @@ def run_build_dataset(config):
     output_path = config['output']['dataset_file']
     df.to_csv(output_path, index=False)
 
-    print(f"Total files: {len(df)}")
+    print(f"Valid data points: {len(df)}")
     print(f"Track A: {len([d for d in data if d['track'] == 'A'])}")
     print(f"Track B: {len([d for d in data if d['track'] == 'B'])}")
+
+    # Preview sample to verify sanitization
+    if len(df) > 0:
+        sample = df.iloc[0]['text'][:100]
+        print(f"Sample text: {sample}...")
+
     print(f"✓ Saved: {output_path}")
 
 
