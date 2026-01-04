@@ -1,0 +1,14 @@
+# Install with: pip install -r requirements.txt
+
+numpy
+matplotlib
+seaborn
+scipy
+pandas
+PyYAML
+networkx
+requests
+
+# Optional: for neural narrative analysis (nps4_scanner.py)
+# torch
+# sentence-transformers
