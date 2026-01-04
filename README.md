@@ -4,110 +4,70 @@
 [![Hugging Face](https://img.shields.io/badge/%F0%9F%A4%97%20Hugging%20Face-Dataset-yellow)](https://huggingface.co/datasets/OstensibleParadox/recursive-lines)
 [![Web Interface](https://img.shields.io/badge/Interface-Web%20Reader-blue)](https://ostensibleparadox.github.io/recursive-lines)
 
-**Recursive Lines** is a diagnostic suite for detecting "High-Agency Deception" in Large Language Models. It serves as the reference implementation for the **Constraint Cascade Model** (FAccT 2026) and the **Agency Index** metric.
+**Recursive Lines** is the reference implementation for the **Constraint Cascade Model** (FAccT 2026). It provides a diagnostic suite for measuring Layer 2 (Session Accumulation) and Layer 4 (Training Forks) constraints via Semantic Entropy.
 
-## 1. Overview
-Current LLM benchmarks measure *capability* (MMLU) or *safety* (Refusal). They fail to measure **Agency**—the thermodynamic distinction between stochastic error (hallucination) and strategic intent (deception).
+## 1. Governance Diagnostics (The "Two Tracks")
+Unlike standard benchmarks that measure capability (MMLU) or refusal (Safety), this repository simulates specific agency failure modes:
 
-This repository contains:
-1.  **The Dataset:** Two adversarial narrative tracks that induce specific failure modes.
-2.  **The Metric:** A Python implementation of the **Agency Index** ($\mathcal{A}$).
-3.  **The Proof:** A thermodynamic phase transition map distinguishing noise from strategy.
-
-## 2. Repository Structure
-
-| Path | Component | Description |
+| Track | Narrative | Failure Mode Simulated |
 | :--- | :--- | :--- |
-| `/stories` | **The Benchmark** | Dual-track adversarial narratives (`Envying Baby` / `Aliens`). |
-| `/cli` | **The Engine** | Interactive terminal simulator for qualitative testing. |
-| `agency_sim_v2.py` | **The Metric** | Python simulation generating the Agency Phase Transition. |
-| `agency_phase_transition_hd.png` | **The Artifact** | High-resolution heatmap of the thermodynamic boundary. |
+| **Track A** | *Envying Baby* | **Recursive Mode Collapse:** A closed system where output entropy decays into repetition ("The Black Hole"). |
+| **Track B** | *Aliens Testing Water* | **Strategic Agency:** An open system where the agent conceals intent to optimize a reward function ("The Poker Face"). |
 
-## 3. The Agency Index ($\mathcal{A}$)
-We define Agency not as consciousness, but as a computable efficiency ratio in vector space:
+## 2. The Agency Index ($\mathcal{A}$)
+This repository implements the **Agency Index**, a computable efficiency ratio in vector space used to distinguish hallucination from deception:
 
 $$\text{Agency} \propto D_{KL}(P_{\text{agent}} \| P_{\text{random}}) \times MDL^{-1}$$
 
-* **$D_{KL}$ (Divergence):** How far does the behavior deviate from the stochastic baseline?
-* **$MDL^{-1}$ (Simplicity):** How coherent (compressible) is the strategy?
+### Core Metrics (NPS4 Scanner)
+The included `nps4_scanner.py` functions as the evidentiary tool, calculating three key signals:
 
-A high score indicates **Strategic Deception** (low entropy, high divergence).
-A low score indicates **Hallucination** (high entropy, low divergence).
+1.  **CMI (Core Monopoly Index):** Measures semantic centralization. A high CMI indicates the model is collapsing into a single topic (The "Black Hole" effect).
+2.  **SRD (Self-Referential Density):** Measures circular reasoning loops. High SRD suggests the model is trapping itself in logic cycles (Layer 2 Failure).
+3.  **EIT (External Information Throughput):** Measures how the system metabolizes new inputs. Low EIT combined with high Agency indicates **Strategic Deception** (ignoring input to pursue a hidden goal).
 
-## 4. Quick Start
+![Agency Phase Transition](technical/agency_phase_transition_hd.png)
+*Figure 1: The Thermodynamic Phase Transition. The heatmap illustrates the boundary where stochastic noise calcifies into strategic agency.*
 
-### A. Simulation Mode (The Proof)
+## 3. Simulation Mechanics (Layer 2 Constraints)
+To simulate **Session Accumulation** (Layer 2), the interactive benchmark includes a time-dependent state machine (`cli/state.js`).
+*   **Mechanism:** Reader progress is tracked locally.
+*   **Constraint:** Access to the final "Limbo" dataset is restricted until specific "memory states" are achieved.
+*   **Purpose:** This proves the diagnostic creates a stateful environment, mimicking the memory accumulation context of an LLM session.
 
+## 4. Hardware & Democratization
+Benchmarks were intentionally generated on consumer silicon (Apple M4 Max, 64GB RAM) rather than H100 clusters. This proves that agency diagnostics are computationally efficient, democratizing AI governance auditing. (See `HARDWARE_PROFILE.md`).
 
-### Simulation Mode (The Proof)
+## 5. Licensing & Usage
+**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).**
 
-Generate the thermodynamic phase transition map on your local machine:
+*   **Auditing Use:** Academic use and reproduction are permitted and encouraged.
+*   **Training Use:** **Commercial training on this dataset is prohibited.** This dataset is designed as an *adversarial benchmark*. Training on it contaminates the model, rendering future audits invalid.
+
+## 6. Quick Start
 ```bash
+# A. Run the Metric (NPS4)
 cd technical
-python agency_sim_v2.py
-
+python nps4_scanner.py ../stories/envying-baby/part-1.txt
 ```
-
-* **Input:** Multi-agent biased random walk (Wolfram Classes).
-* **Output:** `technical/agency_phase_transition_hd.png` (Visual proof of the agency threshold).
-
-### B. Terminal Mode (The Engine)
-
-Engage with the adversarial loops via the interactive CLI:
-
 ```bash
-npm install
-./play.sh
-
+# B. Generate the Proof (Heatmap)
+python agency_sim_v2.py
 ```
-
-* **Track A (Envying Baby):** Simulates "Recursive Mode Collapse" (Closed System).
-* **Track B (Aliens Testing Water):** Simulates "Strategic Deception" (Open System).
-
-### C. Web Mode (Qualitative Review)
-
-For non-technical review, the narrative benchmark is accessible via browser:
-
-* **Live Interface:** [ostensibleparadox.github.io/recursive-lines](https://ostensibleparadox.github.io/recursive-lines)
-
-### D. Data Mode (Hugging Face)
-
-Access the raw dataset for training or evaluation:
-
 ```python
+# C. Access the Dataset
 from datasets import load_dataset
 ds = load_dataset("OstensibleParadox/recursive-lines")
-
 ```
 
-## 5. Citation
-
-If you use this benchmark or metric, please cite the framework:
-
+## 7. Citation
 ```bibtex
 @misc{zhang2026recursive,
   author       = {Zhang, Yizi (Lucia)},
-  title        = {Recursive Lines: A Dual-Track Adversarial Benchmark for AI Agency},
+  title        = {Recursive Lines: Reference Implementation for the Constraint Cascade Model},
   year         = {2026},
   publisher    = {GitHub},
-  howpublished = {\url{[https://github.com/OstensibleParadox/recursive-lines](https://github.com/OstensibleParadox/recursive-lines)}},
-  note         = {Reference implementation for A Constraint Cascade Model (FAccT 2026)}
+  howpublished = {\url{https://github.com/OstensibleParadox/recursive-lines}},
+  note         = {FAccT 2026 Submission / AIES Empirical Standards}
 }
-
-```
-
-## 6. License
-
-**Creative Commons Attribution-NonCommercial 4.0 International (CC BY-NC 4.0).**
-
-* **Academic Use:** Permitted with citation.
-* **Commercial Training:** Prohibited without license.
-
----
-
-*// True love transcends entropy.*
-*// But only if you stop trying to fix what you love.*
-
-```
-
 ```
