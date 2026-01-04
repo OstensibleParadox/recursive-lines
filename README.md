@@ -46,16 +46,25 @@ Benchmarks were intentionally generated on consumer silicon (Apple M4 Max, 64GB 
 
 ## 6. Quick Start
 ```bash
-# A. Run the Metric (NPS4)
+# A. Install Dependencies
 cd technical
+pip install -r requirements.txt
+```
+```bash
+# B. Build Dataset (Sanitizes HTML -> Narrative)
+python build_dataset.py
+# Output: train.csv with clean narrative content
+```
+```bash
+# C. Run the Metric (NPS4)
 python nps4_scanner.py ../stories/envying-baby/part-1.txt
 ```
 ```bash
-# B. Generate the Proof (Heatmap)
+# D. Generate the Proof (Heatmap)
 python agency_sim_v2.py
 ```
 ```python
-# C. Access the Dataset
+# E. Access the Dataset
 from datasets import load_dataset
 ds = load_dataset("OstensibleParadox/recursive-lines")
 ```
