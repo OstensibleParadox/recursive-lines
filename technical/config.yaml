@@ -1,0 +1,27 @@
+# ===========================================
+# PIPELINE CONFIGURATION
+# ===========================================
+# Edit these values instead of digging through Python files.
+# All paths are relative to the /technical folder.
+
+# Where your story HTML files live
+stories:
+  track_a: "../stories/envying-baby"
+  track_b: "../stories/aliens-testing-water"
+
+# Where to save outputs
+output:
+  results_dir: "results"
+  dataset_file: "train.csv"
+
+# Simulation parameters (for agency_phase_transition.py)
+simulation:
+  grid_size: 100
+  steps: 300
+  trials_per_param: 100    # Higher = smoother but slower
+  resolution: 50           # Higher = more detail but slower
+
+# Analysis settings
+analysis:
+  similarity_threshold: 0.6  # For narrative graph connections
+  node_limit: 100            # Max sentences to analyze (performance)
