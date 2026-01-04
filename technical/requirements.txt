@@ -9,6 +9,10 @@ PyYAML
 networkx
 requests
 
+# HTML parsing for data sanitation (build_dataset.py)
+beautifulsoup4
+lxml
+
 # Optional: for neural narrative analysis (nps4_scanner.py)
 # torch
 # sentence-transformers
