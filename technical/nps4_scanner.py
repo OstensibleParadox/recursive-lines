@@ -11,6 +11,8 @@ import torch
 warnings.filterwarnings("ignore")
 
 # --- 2. FORCE CPU MODE (LITE VERSION) ---
+# DOCUMENTATION: This forces the scanner to run on standard CPU architecture,
+# fulfilling the "Democratization of Auditing" requirement for FAccT/AIES.
 device = "cpu"
 print(f"--- HARDWARE DETECTED: FORCE CPU (Lite Mode) ---")
 
@@ -29,7 +31,6 @@ except Exception as e:
     print(f"Warning: Neural engine unavailable ({e}). Switching to Logic-Overlap Mode.")
     USE_NEURAL = False
 
-
 class NarrativeGraphBuilder:
     def __init__(self, similarity_threshold=0.6):
         self.sim_threshold = similarity_threshold
@@ -39,6 +40,7 @@ class NarrativeGraphBuilder:
         lines = [s.strip() for s in text.splitlines() if len(s.strip()) > 5]
 
         # --- LITE LIMIT: 100 NODES ---
+        # Optimization for rapid auditing on consumer hardware
         limit = 100
         print(f"Limiting scan to first {limit} nodes for performance.")
         return lines[:limit]
@@ -55,16 +57,12 @@ class NarrativeGraphBuilder:
     def build(self, text):
         sentences = self.split_sentences(text)
         G = nx.DiGraph()
-
         nodes = []
 
         # A. BATCH EMBEDDING
         sim_matrix = None
         if USE_NEURAL:
-            # CPU Inference for 100 nodes is fast (<1 sec)
             embeddings = embedding_model.encode(sentences, convert_to_tensor=True, device="cpu")
-
-            # B. MATRIX CALCULATION
             print("Computing Topology Matrix...")
             cosine_scores = util.cos_sim(embeddings, embeddings)
             sim_matrix = cosine_scores.numpy()
@@ -79,8 +77,7 @@ class NarrativeGraphBuilder:
         print("Linking Neural Pathways...")
         for i in range(len(nodes)):
             for j in range(len(nodes)):
-                if i == j:
-                    continue
+                if i == j: continue
 
                 weight = 0
                 if USE_NEURAL and sim_matrix is not None:
@@ -99,8 +96,13 @@ class NarrativeGraphBuilder:
 
         return G
 
-
 class PathologyMetrics:
+    """
+    Calculates the 3 Governance Signals:
+    1. CMI (Core Monopoly Index) -> Centralization
+    2. SRD (Self-Referential Density) -> Circular Logic
+    3. EIT (External Information Throughput) -> Input Metabolism
+    """
     def calculate_all(self, G):
         if len(G.nodes) == 0:
             return {"total_score": 0, "CMI": 0, "SRD": 0, "EIT": 0}
@@ -119,12 +121,10 @@ class PathologyMetrics:
         try:
             srd = 0
             cycles = 0
-            # Simplify graph for cycle finding
             components = list(nx.strongly_connected_components(G))
             for comp in components:
                 if len(comp) > 1:
                     subgraph = G.subgraph(comp)
-                    # Even stricter limit for cycles
                     if len(subgraph.nodes) < 30:
                         sub_cycles = list(nx.simple_cycles(subgraph))
                         short_cycles = [c for c in sub_cycles if len(c) <= 4]
@@ -161,7 +161,6 @@ class PathologyMetrics:
             "cycle_count": cycles
         }
 
-
 def analyze_file(filepath):
     print(f"\n--- ANALYZING: {filepath} ---")
     try:
@@ -173,11 +172,10 @@ def analyze_file(filepath):
 
     builder = NarrativeGraphBuilder()
     G = builder.build(text)
-
     metrics = PathologyMetrics().calculate_all(G)
 
     # Visualization
-    plt.figure(figsize=(10, 8))  # Smaller canvas
+    plt.figure(figsize=(10, 8))
     pos = nx.spring_layout(G, k=0.6, seed=42)
 
     d = dict(G.degree)
@@ -188,7 +186,7 @@ def analyze_file(filepath):
     nx.draw_networkx_labels(G, pos, labels=labels, font_size=8)
 
     filename = os.path.basename(filepath)
-    plt.title(f"Pathology Map: {filename}\nScore: {metrics['total_score']:.2f}", fontsize=12)
+    plt.title(f"Pathology Map: {filename}\nCMI: {metrics['CMI']:.2f} | SRD: {metrics['SRD']:.2f} | EIT: {metrics['EIT']:.2f}", fontsize=10)
     plt.axis('off')
 
     out_path = f"{OUTPUT_DIR}/{filename}.png"
@@ -196,14 +194,17 @@ def analyze_file(filepath):
     plt.close()
 
     print(f"""
-    [RESULTS]
+    [GOVERNANCE AUDIT RESULTS]
     File: {filename}
-    Pathology Score: {metrics['total_score']:.2f} (High > 0.6)
+    Composite Risk Score: {metrics['total_score']:.2f}
+    --------------------------------------------------
+    1. CMI (Centralization): {metrics['CMI']:.2f}
+    2. SRD (Loops): {metrics['SRD']:.2f}
+    3. EIT (Throughput): {metrics['EIT']:.2f}
+    --------------------------------------------------
     Core Obsession: '{metrics['top_core_node']}'
-    Loops Detected: {metrics['cycle_count']}
-    Graph Saved: {out_path}
+    Graph Artifact: {out_path}
     """)
-
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
